@@ -1,0 +1,44 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - img
+  - heading "ValueMax" [level=1]
+  - paragraph: Vampire System
+  - link "Staff Login":
+    - /url: /login
+- main:
+  - img
+  - text: Est. 1987
+  - img
+  - text: 51 Outlets
+  - img
+  - text: 200+ Staff
+  - img
+  - text: 99.9% Uptime
+  - heading "35 Years of Trust. Operations That Scale." [level=1]
+  - paragraph: From single transactions to multi-outlet coordination, ValueMax's digital operations platform grows with your business success.
+  - link "See It Work":
+    - /url: /login
+    - text: See It Work
+    - img
+  - button "Talk to Our Team"
+  - paragraph: Modern interface, familiar workflows
+  - img
+  - heading "Scale Confidently" [level=3]
+  - paragraph: Handle 3x more transactions without adding complexity. Our system grows from single outlets to enterprise operations.
+  - img
+  - heading "Built on Experience" [level=3]
+  - paragraph: 35 years of pawnshop expertise translated into digital workflows. Every feature tested by real outlet operations.
+  - img
+  - heading "Stay Ahead" [level=3]
+  - paragraph: Process renewals 40% faster. Unify branch operations. Turn expertise into competitive advantage.
+  - blockquote: "\"After 15 years managing outlets, this is the first system that actually makes us faster, not slower. It feels like ValueMax built it themselves.\""
+  - text: SC
+  - paragraph: Sarah Chen
+  - paragraph: Senior Outlet Manager, Chinatown Branch
+  - text: 99.9% Uptime 40% Faster Processing 51 Outlets Connected Zero Training Required
+  - paragraph: © 2024 ValueMax. Professional pawnshop operations since 1987.
+- region "Notifications (F8)":
+  - list
+```

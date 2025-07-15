@@ -74,15 +74,18 @@ export function Dashboard() {
       try {
         // Fetch recent transactions to calculate today's stats
         const transactions = await transactionService.getRecentTransactions(50);
+        console.log('🔍 Dashboard: Fetched transactions:', transactions.length, transactions);
         setRecentTransactions(transactions);
         
         // Calculate today's statistics
         const today = new Date();
         const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        console.log('📅 Dashboard: Today start:', todayStart.toISOString());
         
         const todayTransactions = transactions.filter(txn => 
           new Date(txn.transactionDate) >= todayStart
         );
+        console.log('📊 Dashboard: Today transactions:', todayTransactions.length, todayTransactions);
         
         const todayRenewals = todayTransactions.filter(txn => txn.type === 'renewal').length;
         const todayRedemptions = todayTransactions.filter(txn => txn.type === 'redemption').length;
@@ -99,10 +102,18 @@ export function Dashboard() {
         }, 0);
         
         // Fetch additional statistics
+        console.log('📈 Dashboard: Fetching counts...');
         const [activeTicketsData, customersData] = await Promise.all([
-          ticketService.searchTickets({ page: 1, limit: 1 }).then(result => result.pagination.total),
-          customerService.searchCustomers({ page: 1, limit: 1 }).then(result => result.pagination.total)
+          ticketService.searchTickets({ page: 1, limit: 1 }).then(result => {
+            console.log('🎫 Dashboard: Tickets result:', result);
+            return result.pagination.total;
+          }),
+          customerService.searchCustomers({ page: 1, limit: 1 }).then(result => {
+            console.log('👥 Dashboard: Customers result:', result);
+            return result.pagination.total;
+          })
         ]);
+        console.log('📊 Dashboard: Final counts - tickets:', activeTicketsData, 'customers:', customersData);
         
         setStats({
           todayRenewals,

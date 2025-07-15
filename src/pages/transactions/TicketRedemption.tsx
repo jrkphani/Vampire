@@ -283,7 +283,7 @@ export function TicketRedemption() {
       {/* Page Header */}
       <div className='flex justify-between items-start'>
         <div>
-          <h1 className='text-2xl font-bold text-foreground mb-2'>
+          <h1 className='text-h1 font-bold text-foreground mb-2'>
             Ticket Redemptions
           </h1>
           <p className='text-muted-foreground'>
@@ -291,8 +291,8 @@ export function TicketRedemption() {
           </p>
         </div>
         <div className='text-right'>
-          <div className='text-sm text-muted-foreground'>Function</div>
-          <div className='text-lg font-semibold text-foreground font-mono'>FUNC-02</div>
+          <div className='text-body-small text-muted-foreground'>Function</div>
+          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-02</div>
         </div>
       </div>
 
@@ -304,7 +304,7 @@ export function TicketRedemption() {
               <div className='flex items-center gap-2'>
                 <Shield className='h-5 w-5 text-destructive' />
                 <span className='status-badge status-error'>Security Alert</span>
-                <span className='text-sm text-destructive'>
+                <span className='text-body-small text-destructive'>
                   Redeemer does not match ticket holder - Dual staff authentication required
                 </span>
               </div>
@@ -342,7 +342,7 @@ export function TicketRedemption() {
                       onKeyPress={handleTicketKeyPress}
                     />
                     {errors.ticketNumber && (
-                      <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                      <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                         <AlertCircle className='h-4 w-4' />
                         {errors.ticketNumber.message}
                       </div>
@@ -384,11 +384,11 @@ export function TicketRedemption() {
                       <AlertCircle className='h-5 w-5' />
                       <span className='font-semibold'>Lookup Failed</span>
                     </div>
-                    <p className='text-[var(--color-error)] mt-1 text-sm'>{lookupError}</p>
+                    <p className='text-[var(--color-error)] mt-1 text-body-small'>{lookupError}</p>
                     <div className='mt-3'>
                       <button
                         type='button'
-                        className='text-[var(--color-error)] hover:text-[var(--color-error)] text-sm underline'
+                        className='text-[var(--color-error)] hover:text-[var(--color-error)] text-body-small underline'
                         onClick={() => {
                           setLookupError(null);
                           clearError('ticketLookup');
@@ -484,7 +484,7 @@ export function TicketRedemption() {
                         placeholder='S1234567A'
                       />
                       {errors.redeemerNric && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.redeemerNric.message}
                         </div>
@@ -504,7 +504,7 @@ export function TicketRedemption() {
                         placeholder='Full name as per IC'
                       />
                       {errors.redeemerName && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.redeemerName.message}
                         </div>
@@ -521,7 +521,7 @@ export function TicketRedemption() {
                         placeholder='+65 XXXX XXXX'
                       />
                       {errors.redeemerContact && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.redeemerContact.message}
                         </div>
@@ -550,7 +550,7 @@ export function TicketRedemption() {
                         </SelectContent>
                       </Select>
                       {errors.relationshipToCustomer && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.relationshipToCustomer.message}
                         </div>
@@ -566,7 +566,7 @@ export function TicketRedemption() {
                       : 'bg-[var(--color-success)]/10 border-[var(--color-success)]/20'
                   )}>
                     <div className={cn(
-                      'text-sm',
+                      'text-body-small',
                       isDifferentRedeemer ? 'text-[var(--color-warning)]' : 'text-[var(--color-success)]'
                     )}>
                       <strong>
@@ -620,7 +620,7 @@ export function TicketRedemption() {
                       <label className='form-label'>Total Redemption Amount</label>
                       <Input
                         {...register('totalAmount', { valueAsNumber: true })}
-                        className='monetary-value bg-muted text-lg font-semibold'
+                        className='monetary-value bg-muted text-h3 font-semibold'
                         type='number'
                         step='0.01'
                         readOnly
@@ -639,7 +639,7 @@ export function TicketRedemption() {
                         placeholder='Amount to pay customer'
                       />
                       {errors.paymentAmount && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.paymentAmount.message}
                         </div>
@@ -651,11 +651,11 @@ export function TicketRedemption() {
                   <div className='mt-6 p-4 bg-muted rounded-lg'>
                     <h4 className='font-semibold text-foreground mb-3'>Payment Summary</h4>
                     <div className='space-y-2'>
-                      <div className='flex justify-between text-sm'>
+                      <div className='flex justify-between text-body-small'>
                         <span>Total Redemption Value:</span>
                         <span className='font-mono font-semibold'>{formatCurrency(watch('totalAmount') || 0)}</span>
                       </div>
-                      <div className='flex justify-between text-sm'>
+                      <div className='flex justify-between text-body-small'>
                         <span>Amount to Pay Customer:</span>
                         <span className={cn(
                           'font-mono',
@@ -665,7 +665,7 @@ export function TicketRedemption() {
                         </span>
                       </div>
                       <div className='mt-3 pt-2 border-t'>
-                        <div className='flex items-center gap-2 text-sm'>
+                        <div className='flex items-center gap-2 text-body-small'>
                           {(watch('paymentAmount') || 0) === (watch('totalAmount') || 0) ? (
                             <>
                               <CheckCircle2 className='h-4 w-4 text-[var(--color-success)]' />
@@ -710,7 +710,7 @@ export function TicketRedemption() {
                         placeholder='Enter your staff code'
                       />
                       {errors.staffCode && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.staffCode.message}
                         </div>
@@ -732,7 +732,7 @@ export function TicketRedemption() {
                           placeholder='Required for different redeemer'
                         />
                         {errors.secondStaffCode && (
-                          <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                          <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                             <AlertCircle className='h-4 w-4' />
                             {errors.secondStaffCode.message}
                           </div>
@@ -763,12 +763,12 @@ export function TicketRedemption() {
                             errors.termsAccepted && 'border-[var(--color-error)]'
                           )}
                         />
-                        <span className='text-sm'>
+                        <span className='text-body-small'>
                           I confirm that all redemption terms and conditions have been explained and accepted
                         </span>
                       </label>
                       {errors.termsAccepted && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-[var(--color-error)]'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-[var(--color-error)]'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.termsAccepted.message}
                         </div>
@@ -779,7 +779,7 @@ export function TicketRedemption() {
                   {/* Authentication Status */}
                   {requiresDualAuth && (
                     <div className='mt-6 p-3 bg-amber-50 border border-amber-200 rounded-lg'>
-                      <div className='text-sm text-amber-800'>
+                      <div className='text-body-small text-amber-800'>
                         <strong>Dual Authentication Required:</strong> Different redeemer detected. Secondary staff approval needed.
                       </div>
                     </div>
@@ -800,7 +800,7 @@ export function TicketRedemption() {
               </h4>
               <div className='space-y-1'>
                 {Object.entries(transactionErrors).map(([field, error]) => (
-                  <p key={field} className='text-[var(--color-error)] text-sm'>
+                  <p key={field} className='text-[var(--color-error)] text-body-small'>
                     <strong>{field}:</strong> {error}
                   </p>
                 ))}

@@ -4,6 +4,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { useUIStore } from '@/stores/uiStore';
 import { authService } from '@/services/api';
 import { Login } from '@/pages/auth/Login';
+import { Button } from '@/components/ui/button';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -130,7 +131,7 @@ export function AuthGuard({ children, requiredPermission }: AuthGuardProps) {
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-foreground mb-2">
+          <h2 className="text-h2 font-semibold text-foreground mb-2">
             Validating Authentication
           </h2>
           <p className="text-muted-foreground">
@@ -149,18 +150,18 @@ export function AuthGuard({ children, requiredPermission }: AuthGuardProps) {
           <div className="card bg-destructive/5 border-destructive/20">
             <div className="p-6 text-center">
               <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-foreground mb-2">
+              <h2 className="text-h2 font-semibold text-foreground mb-2">
                 Access Denied
               </h2>
               <p className="text-muted-foreground mb-4">
                 {authError}
               </p>
-              <button
+              <Button
                 onClick={() => logout()}
-                className="btn-secondary"
+                variant="secondary"
               >
                 Sign Out
-              </button>
+              </Button>
             </div>
           </div>
         </div>

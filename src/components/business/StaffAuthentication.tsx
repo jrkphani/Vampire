@@ -207,14 +207,14 @@ export function StaffAuthentication({
       <div className='card-header'>
         <h3 className='card-title'>{title}</h3>
         {description && (
-          <p className='text-sm text-text-secondary mt-1'>{description}</p>
+          <p className='text-body-small text-text-secondary mt-1'>{description}</p>
         )}
         {requireDualAuth && (
           <div className='mt-2 p-2 bg-warning/10 border border-warning/20 rounded-md'>
-            <p className='text-sm text-warning font-medium'>
+            <p className='text-body-small text-warning font-medium'>
               Dual Authentication Required
             </p>
-            <p className='text-xs text-warning/80 mt-1'>
+            <p className='text-caption text-warning/80 mt-1'>
               A different staff member must authenticate this transaction
             </p>
           </div>
@@ -236,7 +236,7 @@ export function StaffAuthentication({
                 : undefined
             }
             disabled={disabled || state.isLoading}
-            className='font-mono text-lg'
+            className='font-mono text-h3'
             maxLength={10}
             required
           />
@@ -255,7 +255,7 @@ export function StaffAuthentication({
                 : undefined
             }
             disabled={disabled || state.isLoading}
-            className='font-mono text-lg'
+            className='font-mono text-h3'
             maxLength={8}
             required
           />
@@ -293,13 +293,13 @@ export function StaffAuthentication({
               <div className='font-semibold text-success'>
                 Authentication Successful
               </div>
-              <div className='text-sm text-success/80'>
+              <div className='text-body-small text-success/80'>
                 Staff: {state.staffInfo?.name} ({state.staffInfo?.code})
               </div>
             </div>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-sm'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-body-small'>
             <div>
               <span className='text-text-secondary'>Staff Code:</span>{' '}
               <span className='font-mono font-semibold'>
@@ -318,7 +318,7 @@ export function StaffAuthentication({
             </div>
             <div>
               <span className='text-text-secondary'>ID:</span>{' '}
-              <span className='font-mono text-xs'>{state.staffInfo?.id}</span>
+              <span className='font-mono text-caption'>{state.staffInfo?.id}</span>
             </div>
           </div>
 

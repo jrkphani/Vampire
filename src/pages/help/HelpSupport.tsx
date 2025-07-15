@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, BookOpen, Keyboard, AlertCircle, FileText, MessageCircle, ChevronDown, ChevronRight, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 interface FAQItem {
   id: string;
@@ -133,7 +134,7 @@ export function HelpSupport() {
       {/* Page Header */}
       <div className='flex justify-between items-start'>
         <div>
-          <h1 className='text-2xl font-bold text-foreground mb-2'>
+          <h1 className='text-h1 font-bold text-foreground mb-2'>
             Help & Support
           </h1>
           <p className='text-muted-foreground'>
@@ -141,8 +142,8 @@ export function HelpSupport() {
           </p>
         </div>
         <div className='text-right'>
-          <div className='text-sm text-muted-foreground'>System Version</div>
-          <div className='text-lg font-semibold text-foreground font-mono'>v1.0.0</div>
+          <div className='text-body-small text-muted-foreground'>System Version</div>
+          <div className='text-h3 font-semibold text-foreground font-mono'>v1.0.0</div>
         </div>
       </div>
 
@@ -181,21 +182,21 @@ export function HelpSupport() {
                 </div>
                 {card.title}
               </h3>
-              <p className='text-sm text-muted-foreground mt-1'>
+              <p className='text-body-small text-muted-foreground mt-1'>
                 {card.description}
               </p>
             </div>
             <div className='p-6 pt-0'>
               <ul className='space-y-2'>
                 {card.items.map((item, itemIndex) => (
-                  <li key={itemIndex} className='text-sm text-muted-foreground flex items-start gap-2'>
+                  <li key={itemIndex} className='text-body-small text-muted-foreground flex items-start gap-2'>
                     <div className='w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0'></div>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
               <div className='mt-4 pt-4 border-t'>
-                <button className='text-primary text-sm font-medium hover:underline flex items-center gap-1'>
+                <button className='text-primary text-body-small font-medium hover:underline flex items-center gap-1'>
                   View all guides
                   <ExternalLink className='h-3 w-3' />
                 </button>
@@ -209,7 +210,7 @@ export function HelpSupport() {
       <div className='card'>
         <div className='card-header'>
           <h3 className='card-title'>Frequently Asked Questions</h3>
-          <p className='text-sm text-muted-foreground mt-1'>
+          <p className='text-body-small text-muted-foreground mt-1'>
             {searchQuery.trim() 
               ? `Showing ${filteredFAQs.length} results for "${searchQuery}"`
               : `${faqItems.length} common questions and answers`
@@ -226,7 +227,7 @@ export function HelpSupport() {
                 >
                   <div className='flex-1'>
                     <div className='flex items-center gap-3'>
-                      <span className='text-xs bg-primary/10 text-primary px-2 py-1 rounded font-medium'>
+                      <span className='text-caption bg-primary/10 text-primary px-2 py-1 rounded font-medium'>
                         {faq.category}
                       </span>
                       <h4 className='font-medium text-foreground'>{faq.question}</h4>
@@ -241,7 +242,7 @@ export function HelpSupport() {
                   </div>
                 </button>
                 {expandedFAQ === faq.id && (
-                  <div className='px-4 pb-4 text-sm text-muted-foreground border-t border-muted/30 bg-muted/10'>
+                  <div className='px-4 pb-4 text-body-small text-muted-foreground border-t border-muted/30 bg-muted/10'>
                     <div className='pt-4'>
                       {faq.answer}
                     </div>
@@ -255,7 +256,7 @@ export function HelpSupport() {
             <div className='text-center py-8'>
               <Search className='h-12 w-12 text-muted-foreground mx-auto mb-3' />
               <p className='text-muted-foreground'>No results found for "{searchQuery}"</p>
-              <p className='text-sm text-muted-foreground mt-1'>
+              <p className='text-body-small text-muted-foreground mt-1'>
                 Try different keywords or browse the categories above
               </p>
             </div>
@@ -270,7 +271,7 @@ export function HelpSupport() {
             <FileText className='h-5 w-5' />
             Feature Documentation
           </h3>
-          <p className='text-sm text-muted-foreground mt-1'>
+          <p className='text-body-small text-muted-foreground mt-1'>
             Comprehensive guides for all system features and functions
           </p>
         </div>
@@ -278,13 +279,13 @@ export function HelpSupport() {
           <div className='bg-muted/30 p-6 rounded-lg text-center'>
             <FileText className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
             <p className='text-muted-foreground'>Detailed feature guides will be listed here</p>
-            <p className='text-sm text-muted-foreground mt-2'>
+            <p className='text-body-small text-muted-foreground mt-2'>
               Step-by-step tutorials for ticket operations, customer management, reporting, and system administration
             </p>
             <div className='mt-4'>
-              <button className='btn-secondary text-sm'>
+              <Button variant="secondary" size="sm">
                 Coming Soon
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -297,7 +298,7 @@ export function HelpSupport() {
             <MessageCircle className='h-5 w-5' />
             Contact & Support
           </h3>
-          <p className='text-sm text-muted-foreground mt-1'>
+          <p className='text-body-small text-muted-foreground mt-1'>
             Get help from our support team when you need it
           </p>
         </div>
@@ -305,13 +306,13 @@ export function HelpSupport() {
           <div className='bg-muted/30 p-6 rounded-lg text-center'>
             <MessageCircle className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
             <p className='text-muted-foreground'>Support contact information and ticketing system will be available here</p>
-            <p className='text-sm text-muted-foreground mt-2'>
+            <p className='text-body-small text-muted-foreground mt-2'>
               Live chat, email support, phone numbers, and support ticket management
             </p>
             <div className='mt-4'>
-              <button className='btn-secondary text-sm'>
+              <Button variant="secondary" size="sm">
                 Coming Soon
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -321,7 +322,7 @@ export function HelpSupport() {
       <div className='card bg-blue-50'>
         <div className='p-4'>
           <h4 className='font-semibold text-blue-800 mb-2'>Quick Tips</h4>
-          <div className='text-sm text-blue-700 space-y-1'>
+          <div className='text-body-small text-blue-700 space-y-1'>
             <p>• Use Ctrl+K (Cmd+K) to open the command palette from anywhere in the system</p>
             <p>• Press F1 while on any page to get context-specific help</p>
             <p>• Most forms support Enter key for quick submission and Tab for field navigation</p>

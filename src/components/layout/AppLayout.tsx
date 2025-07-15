@@ -2,6 +2,8 @@ import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 import { EnhancedGlobalCommandPalette } from './EnhancedGlobalCommandPalette';
 import { GlobalShortcuts } from './GlobalShortcuts';
+import { useUIStore } from '@/stores/uiStore';
+import { clsx } from 'clsx';
 // import { BreadcrumbItem } from '@/components/ui'
 
 interface AppLayoutProps {
@@ -17,8 +19,10 @@ export function AppLayout({
   breadcrumbs = [],
   showBreadcrumbs = true,
 }: AppLayoutProps) {
+  const { sidebarOpen } = useUIStore();
+  
   return (
-    <div className='app-layout'>
+    <div className={clsx('app-layout', !sidebarOpen && 'sidebar-collapsed')}>
       <Sidebar />
 
       <Header

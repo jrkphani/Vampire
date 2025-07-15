@@ -220,7 +220,7 @@ export function CombinedOperations() {
       case 1:
         return (
           <div className='space-y-6'>
-            <h3 className='text-lg font-semibold text-foreground'>Ticket Selection & Operation Type</h3>
+            <h3 className='text-h3 font-semibold text-foreground'>Ticket Selection & Operation Type</h3>
             
             {/* Operation Type Selection */}
             <RadioGroup onValueChange={(value) => setOperationType(value as 'renew' | 'redeem')} value={operationType}>
@@ -243,7 +243,7 @@ export function CombinedOperations() {
                         <RadioGroupItem value="renew" id="renew-option" />
                         <label htmlFor="renew-option"><strong>Renew</strong></label>
                       </div>
-                      <p className='text-sm text-muted-foreground'>Process ticket renewal</p>
+                      <p className='text-body-small text-muted-foreground'>Process ticket renewal</p>
                     </div>
                   </div>
                 </div>
@@ -266,7 +266,7 @@ export function CombinedOperations() {
                         <RadioGroupItem value="redeem" id="redeem-option" />
                         <label htmlFor="redeem-option"><strong>Redeem</strong></label>
                       </div>
-                      <p className='text-sm text-muted-foreground'>Process item redemption</p>
+                      <p className='text-body-small text-muted-foreground'>Process item redemption</p>
                     </div>
                   </div>
                 </div>
@@ -304,10 +304,13 @@ export function CombinedOperations() {
                   )}
                 </div>
               </div>
-              <div className='flex items-end'>
+              <div className='form-group'>
+                <label className='form-label opacity-0 select-none' aria-hidden='true'>
+                  Action
+                </label>
                 <Button 
-                  variant='secondary'
-                  className='flex items-center gap-2 w-full'
+                  variant='outline'
+                  className='flex items-center gap-2 w-full h-10'
                   onClick={handleAddTicket}
                   disabled={!ticketNumber.trim() || isProcessing}
                 >
@@ -326,13 +329,13 @@ export function CombinedOperations() {
               <div className='bg-red-50 border border-red-200 rounded-lg p-4 mb-4'>
                 <h4 className='font-semibold text-red-800 mb-2'>Validation Issues</h4>
                 {validation.errors.map((error, index) => (
-                  <div key={index} className='text-sm text-red-700 flex items-center gap-2 mb-1'>
+                  <div key={index} className='text-body-small text-red-700 flex items-center gap-2 mb-1'>
                     <AlertCircle className='h-4 w-4' />
                     <span><strong>{error.field}:</strong> {error.message}</span>
                   </div>
                 ))}
                 {validation.warnings.map((warning, index) => (
-                  <div key={index} className='text-sm text-yellow-700 flex items-center gap-2 mb-1'>
+                  <div key={index} className='text-body-small text-yellow-700 flex items-center gap-2 mb-1'>
                     <AlertCircle className='h-4 w-4' />
                     <span><strong>{warning.field}:</strong> {warning.message}</span>
                   </div>
@@ -394,7 +397,7 @@ export function CombinedOperations() {
       case 2:
         return (
           <div className='space-y-6'>
-            <h3 className='text-lg font-semibold text-foreground'>Customer & Redeemer Verification</h3>
+            <h3 className='text-h3 font-semibold text-foreground'>Customer & Redeemer Verification</h3>
             
             {/* Authentication Requirements */}
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -404,7 +407,7 @@ export function CombinedOperations() {
                     <User className='h-5 w-5' />
                     Authentication Required
                   </h4>
-                  <div className='text-sm text-blue-700 space-y-1'>
+                  <div className='text-body-small text-blue-700 space-y-1'>
                     <p>• Dual Staff: {requiresDualAuthentication(wizardData.tickets, wizardData.netAmount) ? 'Yes' : 'No'}</p>
                     <p>• Manager Approval: {requiresManagerApproval(wizardData.tickets, wizardData.netAmount) ? 'Yes' : 'No'}</p>
                     <p>• Tickets Count: {wizardData.tickets.length}</p>
@@ -418,15 +421,15 @@ export function CombinedOperations() {
                   <h4 className='font-semibold text-foreground mb-2'>Verification Status</h4>
                   <div className='space-y-2'>
                     <div className='flex items-center justify-between'>
-                      <span className='text-sm'>Primary Customer</span>
+                      <span className='text-body-small'>Primary Customer</span>
                       <span className='status-badge status-pending'>Pending</span>
                     </div>
                     <div className='flex items-center justify-between'>
-                      <span className='text-sm'>Identity Documents</span>
+                      <span className='text-body-small'>Identity Documents</span>
                       <span className='status-badge status-pending'>Pending</span>
                     </div>
                     <div className='flex items-center justify-between'>
-                      <span className='text-sm'>Authorization</span>
+                      <span className='text-body-small'>Authorization</span>
                       <span className='status-badge status-pending'>Pending</span>
                     </div>
                   </div>
@@ -437,7 +440,7 @@ export function CombinedOperations() {
             <div className='bg-muted/30 p-6 rounded-lg text-center'>
               <User className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
               <p className='text-muted-foreground'>Customer and redeemer verification forms will be implemented here</p>
-              <p className='text-sm text-muted-foreground mt-2'>NRIC validation, photo ID verification, and authorization checks</p>
+              <p className='text-body-small text-muted-foreground mt-2'>NRIC validation, photo ID verification, and authorization checks</p>
             </div>
           </div>
         );
@@ -445,7 +448,7 @@ export function CombinedOperations() {
       case 3:
         return (
           <div className='space-y-6'>
-            <h3 className='text-lg font-semibold text-foreground'>Payment Processing</h3>
+            <h3 className='text-h3 font-semibold text-foreground'>Payment Processing</h3>
             
             {/* Payment Summary */}
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -454,11 +457,11 @@ export function CombinedOperations() {
                   <h4 className='font-semibold text-foreground mb-3'>Transaction Summary</h4>
                   {calculation ? (
                     <div className='space-y-2'>
-                      <div className='flex justify-between text-sm'>
+                      <div className='flex justify-between text-body-small'>
                         <span>Total Renewals:</span>
                         <span className='font-mono'>{formatCurrency(wizardData.totalRenewalAmount)}</span>
                       </div>
-                      <div className='flex justify-between text-sm'>
+                      <div className='flex justify-between text-body-small'>
                         <span>Total Redemptions:</span>
                         <span className='font-mono'>-{formatCurrency(wizardData.totalRedemptionAmount)}</span>
                       </div>
@@ -472,13 +475,13 @@ export function CombinedOperations() {
                             {formatCurrency(Math.abs(wizardData.netAmount))}
                           </span>
                         </div>
-                        <div className='text-xs text-muted-foreground mt-1'>
+                        <div className='text-caption text-muted-foreground mt-1'>
                           {wizardData.netAmount > 0 ? 'Collect from customer' : 'Pay to customer'}
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className='text-sm text-muted-foreground'>Calculating totals...</div>
+                    <div className='text-body-small text-muted-foreground'>Calculating totals...</div>
                   )}
                 </CardContent>
               </Card>
@@ -489,15 +492,15 @@ export function CombinedOperations() {
                   <RadioGroup onValueChange={(value) => setPaymentMethod(value)} value={paymentMethod}>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="cash" id="cash" />
-                      <label htmlFor="cash" className='text-sm'>Cash</label>
+                      <label htmlFor="cash" className='text-body-small'>Cash</label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="card" id="card" />
-                      <label htmlFor="card" className='text-sm'>Card/NETS</label>
+                      <label htmlFor="card" className='text-body-small'>Card/NETS</label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="mixed" id="mixed" />
-                      <label htmlFor="mixed" className='text-sm'>Mixed Payment</label>
+                      <label htmlFor="mixed" className='text-body-small'>Mixed Payment</label>
                     </div>
                   </RadioGroup>
                 </CardContent>
@@ -507,7 +510,7 @@ export function CombinedOperations() {
             <div className='bg-muted/30 p-6 rounded-lg text-center'>
               <CreditCard className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
               <p className='text-muted-foreground'>Payment collection forms will be implemented here</p>
-              <p className='text-sm text-muted-foreground mt-2'>Cash collection, card processing, and change calculation</p>
+              <p className='text-body-small text-muted-foreground mt-2'>Cash collection, card processing, and change calculation</p>
             </div>
           </div>
         );
@@ -515,7 +518,7 @@ export function CombinedOperations() {
       case 4:
         return (
           <div className='space-y-6'>
-            <h3 className='text-lg font-semibold text-foreground'>Staff Authentication & Final Review</h3>
+            <h3 className='text-h3 font-semibold text-foreground'>Staff Authentication & Final Review</h3>
             
             {/* Transaction Review */}
             <Card>
@@ -527,7 +530,7 @@ export function CombinedOperations() {
                   <div>
                     <h5 className='font-semibold mb-2'>Renewal Tickets</h5>
                     {wizardData.tickets.filter(t => t.operation === 'renew').map(ticket => (
-                      <div key={ticket.id} className='text-sm py-1 flex justify-between'>
+                      <div key={ticket.id} className='text-body-small py-1 flex justify-between'>
                         <span className='font-mono'>{ticket.ticketNumber}</span>
                         <span className='font-mono'>{formatCurrency(ticket.amount)}</span>
                       </div>
@@ -536,7 +539,7 @@ export function CombinedOperations() {
                   <div>
                     <h5 className='font-semibold mb-2'>Redemption Tickets</h5>
                     {wizardData.tickets.filter(t => t.operation === 'redeem').map(ticket => (
-                      <div key={ticket.id} className='text-sm py-1 flex justify-between'>
+                      <div key={ticket.id} className='text-body-small py-1 flex justify-between'>
                         <span className='font-mono'>{ticket.ticketNumber}</span>
                         <span className='font-mono'>{formatCurrency(ticket.amount)}</span>
                       </div>
@@ -548,13 +551,13 @@ export function CombinedOperations() {
                   <div className='flex justify-between items-center'>
                     <span className='font-semibold'>Final Net Amount:</span>
                     <span className={cn(
-                      'font-mono text-lg font-bold',
+                      'font-mono text-h3 font-bold',
                       wizardData.netAmount > 0 ? 'text-red-600' : 'text-green-600'
                     )}>
                       {formatCurrency(Math.abs(wizardData.netAmount))}
                     </span>
                   </div>
-                  <div className='text-sm text-muted-foreground mt-1'>
+                  <div className='text-body-small text-muted-foreground mt-1'>
                     {wizardData.netAmount > 0 ? 'Amount to collect from customer' : 'Amount to pay to customer'}
                   </div>
                 </div>
@@ -575,7 +578,7 @@ export function CombinedOperations() {
                       : 'bg-green-50 text-green-700'
                   )}>
                     <div className='font-semibold'>Dual Staff Auth</div>
-                    <div className='text-sm'>
+                    <div className='text-body-small'>
                       {requiresDualAuthentication(wizardData.tickets, wizardData.netAmount) ? 'Required' : 'Not Required'}
                     </div>
                   </div>
@@ -587,14 +590,14 @@ export function CombinedOperations() {
                       : 'bg-green-50 text-green-700'
                   )}>
                     <div className='font-semibold'>Manager Approval</div>
-                    <div className='text-sm'>
+                    <div className='text-body-small'>
                       {requiresManagerApproval(wizardData.tickets, wizardData.netAmount) ? 'Required' : 'Not Required'}
                     </div>
                   </div>
                   
                   <div className='p-3 rounded-lg text-center bg-blue-50 text-blue-700'>
                     <div className='font-semibold'>Workflow Progress</div>
-                    <div className='text-sm'>{Math.round(getWorkflowProgress())}% Complete</div>
+                    <div className='text-body-small'>{Math.round(getWorkflowProgress())}% Complete</div>
                   </div>
                 </div>
               </CardContent>
@@ -603,7 +606,7 @@ export function CombinedOperations() {
             <div className='bg-muted/30 p-6 rounded-lg text-center'>
               <CheckCircle2 className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
               <p className='text-muted-foreground'>Staff authentication forms will be implemented here</p>
-              <p className='text-sm text-muted-foreground mt-2'>PIN entry, manager approval, and final confirmation</p>
+              <p className='text-body-small text-muted-foreground mt-2'>PIN entry, manager approval, and final confirmation</p>
             </div>
           </div>
         );
@@ -618,7 +621,7 @@ export function CombinedOperations() {
       {/* Page Header */}
       <div className='flex justify-between items-start'>
         <div>
-          <h1 className='text-2xl font-bold text-foreground mb-2'>
+          <h1 className='text-h1 font-bold text-foreground mb-2'>
             Combined Operations
           </h1>
           <p className='text-muted-foreground'>
@@ -626,8 +629,8 @@ export function CombinedOperations() {
           </p>
         </div>
         <div className='text-right'>
-          <div className='text-sm text-muted-foreground'>Function</div>
-          <div className='text-lg font-semibold text-foreground font-mono'>FUNC-06</div>
+          <div className='text-body-small text-muted-foreground'>Function</div>
+          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-06</div>
         </div>
       </div>
 
@@ -644,7 +647,7 @@ export function CombinedOperations() {
                   {[1, 2, 3, 4].map((step, index) => (
                     <React.Fragment key={step}>
                       <div className={cn(
-                        'w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold',
+                        'w-8 h-8 rounded-full flex items-center justify-center text-body-small font-semibold',
                         step === currentStep
                           ? 'bg-brand-red text-white'
                           : step < currentStep
@@ -663,7 +666,7 @@ export function CombinedOperations() {
                   ))}
                 </div>
               </div>
-              <div className='text-sm text-muted-foreground mt-2'>
+              <div className='text-body-small text-muted-foreground mt-2'>
                 Step {currentStep} of 4
               </div>
             </CardHeader>
@@ -689,7 +692,7 @@ export function CombinedOperations() {
                   Renewals
                 </h4>
                 <div className='bg-blue-50 p-3 rounded-lg'>
-                  <div className='text-sm text-muted-foreground'>
+                  <div className='text-body-small text-muted-foreground'>
                     {wizardData.tickets.filter(t => t.operation === 'renew').length} tickets
                   </div>
                   <div className='font-semibold text-blue-700 font-mono'>
@@ -698,7 +701,7 @@ export function CombinedOperations() {
                   {wizardData.tickets.filter(t => t.operation === 'renew').length > 0 && (
                     <div className='mt-2 space-y-1'>
                       {wizardData.tickets.filter(t => t.operation === 'renew').map(ticket => (
-                        <div key={ticket.id} className='text-xs text-blue-600 flex justify-between'>
+                        <div key={ticket.id} className='text-caption text-blue-600 flex justify-between'>
                           <span>{ticket.ticketNumber}</span>
                           <span>{formatCurrency(ticket.amount)}</span>
                         </div>
@@ -715,7 +718,7 @@ export function CombinedOperations() {
                   Redemptions
                 </h4>
                 <div className='bg-green-50 p-3 rounded-lg'>
-                  <div className='text-sm text-muted-foreground'>
+                  <div className='text-body-small text-muted-foreground'>
                     {wizardData.tickets.filter(t => t.operation === 'redeem').length} tickets
                   </div>
                   <div className='font-semibold text-green-700 font-mono'>
@@ -724,7 +727,7 @@ export function CombinedOperations() {
                   {wizardData.tickets.filter(t => t.operation === 'redeem').length > 0 && (
                     <div className='mt-2 space-y-1'>
                       {wizardData.tickets.filter(t => t.operation === 'redeem').map(ticket => (
-                        <div key={ticket.id} className='text-xs text-green-600 flex justify-between'>
+                        <div key={ticket.id} className='text-caption text-green-600 flex justify-between'>
                           <span>{ticket.ticketNumber}</span>
                           <span>{formatCurrency(ticket.amount)}</span>
                         </div>
@@ -738,7 +741,7 @@ export function CombinedOperations() {
               <div className='border-t pt-4'>
                 <h4 className='font-semibold text-foreground mb-2'>Net Amount</h4>
                 <div className={cn(
-                  'p-3 rounded-lg font-mono text-lg font-bold',
+                  'p-3 rounded-lg font-mono text-h3 font-bold',
                   wizardData.netAmount > 0
                     ? 'bg-red-50 text-red-700'
                     : wizardData.netAmount < 0
@@ -747,7 +750,7 @@ export function CombinedOperations() {
                 )}>
                   {formatCurrency(Math.abs(wizardData.netAmount))}
                 </div>
-                <div className='text-xs text-muted-foreground mt-1'>
+                <div className='text-caption text-muted-foreground mt-1'>
                   {wizardData.netAmount > 0
                     ? 'Collect from customer'
                     : wizardData.netAmount < 0

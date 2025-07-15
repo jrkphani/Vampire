@@ -3,6 +3,7 @@ import { Clock, AlertTriangle, RefreshCw, LogOut } from 'lucide-react';
 import { useAuthStore } from '@/stores/authStore';
 import { useUIStore } from '@/stores/uiStore';
 import { authService } from '@/services/api';
+import { Button } from '@/components/ui/button';
 
 interface SessionManagerProps {
   children: React.ReactNode;
@@ -119,10 +120,10 @@ export function SessionManager({ children }: SessionManagerProps) {
               <div className="flex items-center gap-3 mb-4">
                 <AlertTriangle className="h-8 w-8 text-amber-500" />
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground">
+                  <h3 className="text-h3 font-semibold text-foreground">
                     Session Expiring Soon
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-body-small text-muted-foreground">
                     Your session will expire in {formatTime(timeUntilExpiry)}
                   </p>
                 </div>
@@ -131,17 +132,17 @@ export function SessionManager({ children }: SessionManagerProps) {
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
                 <div className="flex items-center gap-2 text-amber-800">
                   <Clock className="h-5 w-5" />
-                  <span className="text-sm">
+                  <span className="text-body-small">
                     Please choose an option to continue or you will be automatically logged out.
                   </span>
                 </div>
               </div>
               
               <div className="flex gap-3">
-                <button
+                <Button
                   onClick={handleRefreshSession}
                   disabled={isRefreshing}
-                  className="btn-primary flex-1"
+                  className="flex-1"
                 >
                   {isRefreshing ? (
                     <>
@@ -154,15 +155,16 @@ export function SessionManager({ children }: SessionManagerProps) {
                       Renew Session
                     </>
                   )}
-                </button>
+                </Button>
                 
-                <button
+                <Button
                   onClick={handleLogout}
-                  className="btn-secondary flex-1"
+                  variant="secondary"
+                  className="flex-1"
                 >
                   <LogOut className="h-4 w-4 mr-2" />
                   Logout
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -207,7 +209,7 @@ export function SessionStatus() {
   };
 
   return (
-    <div className="flex items-center gap-2 text-sm">
+    <div className="flex items-center gap-2 text-body-small">
       <Clock className="h-4 w-4 text-muted-foreground" />
       <span className="text-foreground">
         {staff.name} ({staff.code})

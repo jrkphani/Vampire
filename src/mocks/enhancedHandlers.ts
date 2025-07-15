@@ -98,6 +98,51 @@ const mockCustomers: Customer[] = [
     createdAt: '2024-03-05T09:15:00Z',
     updatedAt: '2024-03-05T09:15:00Z',
   },
+  {
+    id: 'CUST004',
+    nric: 'S4567890D',
+    name: 'David Lee Kah Wai',
+    dob: '1992-11-01',
+    gender: 'M',
+    nationality: 'Singapore',
+    race: 'Chinese',
+    address: '10 Jurong East Street 32',
+    postalCode: '609505',
+    contact: '94567890',
+    email: 'david.lee@email.com',
+    createdAt: '2024-04-01T08:00:00Z',
+    updatedAt: '2024-04-01T08:00:00Z',
+  },
+  {
+    id: 'CUST005',
+    nric: 'S5678901E',
+    name: 'Priya Sharma',
+    dob: '1988-03-20',
+    gender: 'F',
+    nationality: 'Singapore',
+    race: 'Indian',
+    address: '25 Serangoon Road',
+    postalCode: '218227',
+    contact: '95678901',
+    email: 'priya.sharma@email.com',
+    createdAt: '2024-05-10T11:30:00Z',
+    updatedAt: '2024-05-10T11:30:00Z',
+  },
+  {
+    id: 'CUST006',
+    nric: 'S6789012F',
+    name: 'Michael Wong Jin Kai',
+    dob: '1975-09-12',
+    gender: 'M',
+    nationality: 'Singapore',
+    race: 'Chinese',
+    address: '88 Ang Mo Kio Avenue 4',
+    postalCode: '569897',
+    contact: '96789012',
+    email: 'michael.wong@email.com',
+    createdAt: '2024-06-15T16:45:00Z',
+    updatedAt: '2024-06-15T16:45:00Z',
+  },
 ];
 
 // Mock tickets data
@@ -478,44 +523,6 @@ export const enhancedHandlers = [
   }),
 
   // Ticket endpoints
-  http.get('/api/tickets/:ticketNo', async ({ params }) => {
-    const scenario = getResponseScenario();
-    const { ticketNo } = params;
-
-    if (scenario === 'error') {
-      return HttpResponse.json(
-        {
-          success: false,
-          error: 'Database connection failed',
-        },
-        { status: 500 }
-      );
-    }
-
-    if (scenario === 'slow') {
-      await simulateNetworkDelay(3000, 8000);
-    } else {
-      await simulateNetworkDelay(300, 1200);
-    }
-
-    const ticket = findMockTicket(ticketNo as string);
-
-    if (ticket) {
-      return HttpResponse.json({
-        success: true,
-        data: ticket,
-      });
-    }
-
-    return HttpResponse.json(
-      {
-        success: false,
-        error: 'Ticket not found',
-      },
-      { status: 404 }
-    );
-  }),
-
   http.get('/api/tickets/search', async ({ request }) => {
     console.log('🎫 Mock: Handling GET /api/tickets/search', request.url);
     await simulateNetworkDelay(400, 1000);
@@ -555,6 +562,44 @@ export const enhancedHandlers = [
         },
       },
     });
+  }),
+
+  http.get('/api/tickets/:ticketNo', async ({ params }) => {
+    const scenario = getResponseScenario();
+    const { ticketNo } = params;
+
+    if (scenario === 'error') {
+      return HttpResponse.json(
+        {
+          success: false,
+          error: 'Database connection failed',
+        },
+        { status: 500 }
+      );
+    }
+
+    if (scenario === 'slow') {
+      await simulateNetworkDelay(3000, 8000);
+    } else {
+      await simulateNetworkDelay(300, 1200);
+    }
+
+    const ticket = findMockTicket(ticketNo as string);
+
+    if (ticket) {
+      return HttpResponse.json({
+        success: true,
+        data: ticket,
+      });
+    }
+
+    return HttpResponse.json(
+      {
+        success: false,
+        error: 'Ticket not found',
+      },
+      { status: 404 }
+    );
   }),
 
   http.post('/api/tickets/batch', async ({ request }) => {
@@ -655,28 +700,6 @@ export const enhancedHandlers = [
   }),
 
   // Customer endpoints
-  http.get('/api/customers/:customerId', async ({ params }) => {
-    await simulateNetworkDelay(200, 600);
-
-    const { customerId } = params;
-    const customer = findMockCustomer(customerId as string);
-
-    if (customer) {
-      return HttpResponse.json({
-        success: true,
-        data: customer,
-      });
-    }
-
-    return HttpResponse.json(
-      {
-        success: false,
-        error: 'Customer not found',
-      },
-      { status: 404 }
-    );
-  }),
-
   http.get('/api/customers/search', async ({ request }) => {
     console.log('🔍 Mock: Handling GET /api/customers/search', request.url);
     await simulateNetworkDelay(300, 800);
@@ -727,6 +750,28 @@ export const enhancedHandlers = [
         },
       },
     });
+  }),
+
+  http.get('/api/customers/:customerId', async ({ params }) => {
+    await simulateNetworkDelay(200, 600);
+
+    const { customerId } = params;
+    const customer = findMockCustomer(customerId as string);
+
+    if (customer) {
+      return HttpResponse.json({
+        success: true,
+        data: customer,
+      });
+    }
+
+    return HttpResponse.json(
+      {
+        success: false,
+        error: 'Customer not found',
+      },
+      { status: 404 }
+    );
   }),
 
   http.post('/api/customers', async ({ request }) => {

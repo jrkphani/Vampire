@@ -29,9 +29,9 @@ const statusBadgeVariants = cva(
         subtle: 'bg-muted text-muted-foreground border border-border',
       },
       size: {
-        sm: 'px-2 py-0.5 text-xs gap-1',
-        md: 'px-3 py-1 text-sm gap-1.5',
-        lg: 'px-4 py-1.5 text-base gap-2',
+        sm: 'px-2 py-0.5 text-caption gap-1',
+        md: 'px-3 py-1 text-body-small gap-1.5',
+        lg: 'px-4 py-1.5 text-body gap-2',
       },
     },
     defaultVariants: {

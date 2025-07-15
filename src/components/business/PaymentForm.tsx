@@ -217,7 +217,7 @@ export function PaymentForm({
     <Card className={`space-y-6 ${className}`}>
       <div className='card-header'>
         <h3 className='card-title'>Payment Information</h3>
-        <div className='mt-2 text-sm text-text-secondary'>
+        <div className='mt-2 text-body-small text-text-secondary'>
           Total Due:{' '}
           <span className='font-semibold text-brand-red'>
             {formatCurrency(totalDue)}
@@ -236,7 +236,7 @@ export function PaymentForm({
               size='sm'
               onClick={handleAutoFillCash}
               disabled={disabled}
-              className='text-xs'
+              className='text-caption'
             >
               Auto-fill (
               {formatCurrency(Math.max(0, totalDue - digitalAmountNum))})
@@ -251,14 +251,14 @@ export function PaymentForm({
             placeholder='0.00'
             error={state.errors.cashAmount}
             disabled={disabled}
-            className='font-mono text-lg'
+            className='font-mono text-h3'
             autoFocus={autoFocus}
           />
         </div>
 
         {/* Digital Payment Toggle */}
         <div className='flex items-center justify-between py-2 border-t border-border-light'>
-          <span className='text-sm font-medium text-text-primary'>
+          <span className='text-body-small font-medium text-text-primary'>
             Digital Payment
           </span>
           <Button
@@ -285,7 +285,7 @@ export function PaymentForm({
                 size='sm'
                 onClick={handleAutoFillDigital}
                 disabled={disabled}
-                className='text-xs'
+                className='text-caption'
               >
                 Auto-fill (
                 {formatCurrency(Math.max(0, totalDue - cashAmountNum))})
@@ -301,7 +301,7 @@ export function PaymentForm({
                 placeholder='0.00'
                 error={state.errors.digitalAmount}
                 disabled={disabled}
-                className='font-mono text-lg'
+                className='font-mono text-h3'
               />
 
               <Input
@@ -323,7 +323,7 @@ export function PaymentForm({
         <div className='bg-background-surface rounded-lg p-4 space-y-3'>
           <h4 className='font-semibold text-text-primary'>Payment Summary</h4>
 
-          <div className='space-y-2 text-sm'>
+          <div className='space-y-2 text-body-small'>
             <div className='flex justify-between'>
               <span className='text-text-secondary'>Cash Amount:</span>
               <span className='monetary-value'>
@@ -377,7 +377,7 @@ export function PaymentForm({
         {/* Payment Validation Status */}
         {totalCollected > 0 && (
           <div
-            className={`p-3 rounded-lg text-sm ${
+            className={`p-3 rounded-lg text-body-small ${
               isPaymentValid
                 ? 'bg-success/10 text-success border border-success/20'
                 : 'bg-error/10 text-error border border-error/20'
@@ -396,7 +396,7 @@ export function PaymentForm({
               </span>
             </div>
             {!isPaymentValid && (
-              <div className='mt-1 text-xs'>
+              <div className='mt-1 text-caption'>
                 Collected amount must be greater than or equal to the total due.
               </div>
             )}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Search, Eye } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/ui/button';
 
 interface CustomerResult {
   nric: string;
@@ -133,7 +134,7 @@ export function CustomerEnquiry() {
       {/* Page Header */}
       <div className='flex justify-between items-start'>
         <div>
-          <h1 className='text-2xl font-bold text-foreground mb-2'>
+          <h1 className='text-h1 font-bold text-foreground mb-2'>
             Universal Enquiry
           </h1>
           <p className='text-muted-foreground'>
@@ -141,8 +142,8 @@ export function CustomerEnquiry() {
           </p>
         </div>
         <div className='text-right'>
-          <div className='text-sm text-muted-foreground'>Function</div>
-          <div className='text-lg font-semibold text-foreground font-mono'>FUNC-03</div>
+          <div className='text-body-small text-muted-foreground'>Function</div>
+          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-03</div>
         </div>
       </div>
 
@@ -176,7 +177,7 @@ export function CustomerEnquiry() {
         <div className='card'>
           <div className='card-header'>
             <h3 className='card-title'>Customer Results</h3>
-            <p className='text-sm text-muted-foreground mt-1'>
+            <p className='text-body-small text-muted-foreground mt-1'>
               {customerResults.length} customers found
             </p>
           </div>
@@ -197,10 +198,10 @@ export function CustomerEnquiry() {
                     <td>{customer.name}</td>
                     <td>{customer.phone}</td>
                     <td>
-                      <button className='btn-tertiary flex items-center gap-2 text-sm px-3 py-1'>
+                      <Button variant="outline" size="sm" className='flex items-center gap-2'>
                         <Eye className='h-4 w-4' />
                         View
-                      </button>
+                      </Button>
                     </td>
                   </tr>
                 ))}
@@ -213,7 +214,7 @@ export function CustomerEnquiry() {
         <div className='card'>
           <div className='card-header'>
             <h3 className='card-title'>Ticket Results</h3>
-            <p className='text-sm text-muted-foreground mt-1'>
+            <p className='text-body-small text-muted-foreground mt-1'>
               {ticketResults.length} tickets found
             </p>
           </div>
@@ -252,7 +253,7 @@ export function CustomerEnquiry() {
       <div className='card bg-muted/30'>
         <div className='p-4'>
           <h4 className='font-semibold text-foreground mb-2'>Search Tips</h4>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-body-small text-muted-foreground'>
             <div>
               <strong>NRIC:</strong> Enter full NRIC (e.g., S1234567A)
             </div>

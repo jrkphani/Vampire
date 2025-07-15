@@ -268,8 +268,8 @@ export function CreditRatingAssessment() {
           </p>
         </div>
         <div className='text-right'>
-          <div className='text-sm text-text-secondary'>Function</div>
-          <div className='text-lg font-semibold text-text-primary'>FUNC-07</div>
+          <div className='text-body-small text-text-secondary'>Function</div>
+          <div className='text-h3 font-semibold text-text-primary'>FUNC-07</div>
         </div>
       </div>
 
@@ -293,7 +293,7 @@ export function CreditRatingAssessment() {
                     handleSearch();
                   }
                 }}
-                className='text-lg'
+                className='text-h3'
               />
             </div>
             <Button
@@ -412,11 +412,11 @@ export function CreditRatingAssessment() {
               <CardContent className='p-6'>
                 <div className='flex items-center justify-between'>
                   <div>
-                    <p className='text-sm text-primary font-medium'>
+                    <p className='text-body-small text-primary font-medium'>
                       Credit Score
                     </p>
                     <p
-                      className={`text-3xl font-bold ${getScoreColor(assessment.creditRating?.score || 0)}`}
+                      className={`text-display font-bold ${getScoreColor(assessment.creditRating?.score || 0)}`}
                     >
                       {assessment.creditRating?.score}
                     </p>
@@ -432,11 +432,11 @@ export function CreditRatingAssessment() {
               <CardContent className='p-6'>
                 <div className='flex items-center justify-between'>
                   <div>
-                    <p className='text-sm text-success font-medium'>
+                    <p className='text-body-small text-success font-medium'>
                       Credit Rating
                     </p>
                     <div
-                      className={`text-2xl font-bold px-3 py-1 rounded ${getRatingColor(assessment.creditRating?.rating || 'F')}`}
+                      className={`text-h1 font-bold px-3 py-1 rounded ${getRatingColor(assessment.creditRating?.rating || 'F')}`}
                     >
                       {assessment.creditRating?.rating}
                     </div>
@@ -452,10 +452,10 @@ export function CreditRatingAssessment() {
               <CardContent className='p-6'>
                 <div className='flex items-center justify-between'>
                   <div>
-                    <p className='text-sm text-primary font-medium'>
+                    <p className='text-body-small text-primary font-medium'>
                       Credit Limit
                     </p>
-                    <p className='text-2xl font-bold text-primary font-mono'>
+                    <p className='text-h1 font-bold text-primary font-mono'>
                       {formatCurrency(
                         assessment.creditRating?.creditLimit || 0
                       )}
@@ -472,10 +472,10 @@ export function CreditRatingAssessment() {
               <CardContent className='p-6'>
                 <div className='flex items-center justify-between'>
                   <div>
-                    <p className='text-sm text-warning font-medium'>
+                    <p className='text-body-small text-warning font-medium'>
                       Outstanding
                     </p>
-                    <p className='text-2xl font-bold text-warning font-mono'>
+                    <p className='text-h1 font-bold text-warning font-mono'>
                       {formatCurrency(
                         assessment.creditRating?.outstandingAmount || 0
                       )}
@@ -507,7 +507,7 @@ export function CreditRatingAssessment() {
                         className='flex items-start gap-3 p-3 bg-destructive/10 border border-destructive/20 rounded-lg'
                       >
                         <AlertTriangle className='h-5 w-5 text-destructive mt-0.5 flex-shrink-0' />
-                        <span className='text-sm text-destructive'>
+                        <span className='text-body-small text-destructive'>
                           {factor}
                         </span>
                       </div>
@@ -519,7 +519,7 @@ export function CreditRatingAssessment() {
                     <p className='text-success font-semibold'>
                       No Risk Factors Identified
                     </p>
-                    <p className='text-sm text-success'>
+                    <p className='text-body-small text-success'>
                       Customer shows good credit behavior
                     </p>
                   </div>
@@ -542,7 +542,7 @@ export function CreditRatingAssessment() {
                       className='flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 rounded-lg'
                     >
                       <Info className='h-5 w-5 text-primary mt-0.5 flex-shrink-0' />
-                      <span className='text-sm text-primary'>
+                      <span className='text-body-small text-primary'>
                         {recommendation}
                       </span>
                     </div>
@@ -573,12 +573,12 @@ export function CreditRatingAssessment() {
                           <h4 className='font-semibold text-text-primary'>
                             {transaction.ticketNo}
                           </h4>
-                          <span className='text-sm bg-primary/10 text-primary px-2 py-1 rounded'>
+                          <span className='text-body-small bg-primary/10 text-primary px-2 py-1 rounded'>
                             {transaction.status}
                           </span>
                         </div>
                         <div className='text-right'>
-                          <div className='text-sm text-text-secondary'>
+                          <div className='text-body-small text-text-secondary'>
                             Principal
                           </div>
                           <div className='font-semibold font-mono'>
@@ -586,7 +586,7 @@ export function CreditRatingAssessment() {
                           </div>
                         </div>
                       </div>
-                      <div className='grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-text-secondary'>
+                      <div className='grid grid-cols-1 md:grid-cols-3 gap-4 text-body-small text-text-secondary'>
                         <div>
                           <strong>Item:</strong>{' '}
                           {transaction.pledge.description}
@@ -624,7 +624,7 @@ export function CreditRatingAssessment() {
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 <div className='space-y-4'>
                   <div>
-                    <div className='flex justify-between text-sm mb-2'>
+                    <div className='flex justify-between text-body-small mb-2'>
                       <span>Credit Utilization</span>
                       <span className='font-semibold'>
                         {(
@@ -691,7 +691,7 @@ export function CreditRatingAssessment() {
                               : 'bg-warning'
                         }`}
                       ></div>
-                      <span className='text-sm'>Credit Score: Excellent</span>
+                      <span className='text-body-small'>Credit Score: Excellent</span>
                     </div>
                     <div className='flex items-center gap-3'>
                       <div
@@ -708,7 +708,7 @@ export function CreditRatingAssessment() {
                               : 'bg-destructive'
                         }`}
                       ></div>
-                      <span className='text-sm'>Utilization: Low Risk</span>
+                      <span className='text-body-small'>Utilization: Low Risk</span>
                     </div>
                     <div className='flex items-center gap-3'>
                       <div
@@ -720,7 +720,7 @@ export function CreditRatingAssessment() {
                               : 'bg-destructive'
                         }`}
                       ></div>
-                      <span className='text-sm'>
+                      <span className='text-body-small'>
                         History:{' '}
                         {assessment.transactionHistory.length >= 5
                           ? 'Extensive'
@@ -755,7 +755,7 @@ export function CreditRatingAssessment() {
                 <TrendingUp className='h-5 w-5 text-success' />
                 <div className='text-left'>
                   <div className='font-semibold'>High Value Customers</div>
-                  <div className='text-sm text-text-secondary'>
+                  <div className='text-body-small text-text-secondary'>
                     Credit limit &gt; $10,000
                   </div>
                 </div>
@@ -767,7 +767,7 @@ export function CreditRatingAssessment() {
                 <AlertTriangle className='h-5 w-5 text-warning' />
                 <div className='text-left'>
                   <div className='font-semibold'>At-Risk Customers</div>
-                  <div className='text-sm text-text-secondary'>
+                  <div className='text-body-small text-text-secondary'>
                     High utilization or defaults
                   </div>
                 </div>
@@ -779,7 +779,7 @@ export function CreditRatingAssessment() {
                 <BarChart3 className='h-5 w-5 text-primary' />
                 <div className='text-left'>
                   <div className='font-semibold'>Credit Reports</div>
-                  <div className='text-sm text-text-secondary'>
+                  <div className='text-body-small text-text-secondary'>
                     Bulk assessment tools
                   </div>
                 </div>

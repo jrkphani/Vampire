@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Settings, User, Shield, Bell, Database, Keyboard, Save, RotateCcw, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import { 
   systemSettingsSchema, 
   type SystemSettingsFormData,
@@ -190,7 +191,7 @@ export function SystemSettings() {
             <div className='card'>
               <div className='card-header'>
                 <h3 className='card-title'>Appearance</h3>
-                <p className='text-sm text-muted-foreground mt-1'>
+                <p className='text-body-small text-muted-foreground mt-1'>
                   Customize the visual appearance of the application
                 </p>
               </div>
@@ -243,7 +244,7 @@ export function SystemSettings() {
             <div className='card'>
               <div className='card-header'>
                 <h3 className='card-title'>Regional Settings</h3>
-                <p className='text-sm text-muted-foreground mt-1'>
+                <p className='text-body-small text-muted-foreground mt-1'>
                   Configure date, time, and currency display formats
                 </p>
               </div>
@@ -298,7 +299,7 @@ export function SystemSettings() {
                   <Keyboard className='h-5 w-5' />
                   Keyboard Shortcuts
                 </h3>
-                <p className='text-sm text-muted-foreground mt-1'>
+                <p className='text-body-small text-muted-foreground mt-1'>
                   System-wide keyboard shortcuts for efficient navigation
                 </p>
               </div>
@@ -306,8 +307,8 @@ export function SystemSettings() {
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                   {keyboardShortcuts.map((shortcut, index) => (
                     <div key={index} className='flex justify-between items-center py-2 border-b border-muted/30 last:border-b-0'>
-                      <span className='text-sm text-muted-foreground'>{shortcut.description}</span>
-                      <kbd className='px-2 py-1 bg-muted text-xs font-mono rounded border'>
+                      <span className='text-body-small text-muted-foreground'>{shortcut.description}</span>
+                      <kbd className='px-2 py-1 bg-muted text-caption font-mono rounded border'>
                         {shortcut.key}
                       </kbd>
                     </div>
@@ -325,7 +326,7 @@ export function SystemSettings() {
             <div className='card'>
               <div className='card-header'>
                 <h3 className='card-title'>Security Settings</h3>
-                <p className='text-sm text-muted-foreground mt-1'>
+                <p className='text-body-small text-muted-foreground mt-1'>
                   Configure authentication and security policies
                 </p>
               </div>
@@ -349,7 +350,7 @@ export function SystemSettings() {
                           dualStaffAuth: e.target.checked
                         })}
                       />
-                      <label htmlFor='dual-staff-auth' className='ml-2 text-sm'>
+                      <label htmlFor='dual-staff-auth' className='ml-2 text-body-small'>
                         {systemConfig.dualStaffAuth ? 'Enabled' : 'Disabled'}
                       </label>
                     </div>
@@ -383,7 +384,7 @@ export function SystemSettings() {
             <div className='card'>
               <div className='card-header'>
                 <h3 className='card-title'>Session Management</h3>
-                <p className='text-sm text-muted-foreground mt-1'>
+                <p className='text-body-small text-muted-foreground mt-1'>
                   Configure session timeouts and automatic logout behavior
                 </p>
               </div>
@@ -435,7 +436,7 @@ export function SystemSettings() {
             <div className='card'>
               <div className='card-header'>
                 <h3 className='card-title'>Data Management</h3>
-                <p className='text-sm text-muted-foreground mt-1'>
+                <p className='text-body-small text-muted-foreground mt-1'>
                   Configure automatic data saving and backup settings
                 </p>
               </div>
@@ -458,7 +459,7 @@ export function SystemSettings() {
                         autoSaveDrafts: e.target.checked
                       })}
                     />
-                    <label htmlFor='auto-save-drafts' className='ml-2 text-sm'>
+                    <label htmlFor='auto-save-drafts' className='ml-2 text-body-small'>
                       {systemConfig.autoSaveDrafts ? 'Enabled' : 'Disabled'}
                     </label>
                   </div>
@@ -481,7 +482,7 @@ export function SystemSettings() {
               <div className='bg-muted/30 p-6 rounded-lg text-center'>
                 <Bell className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
                 <p className='text-muted-foreground'>Notification settings will be configured here</p>
-                <p className='text-sm text-muted-foreground mt-2'>
+                <p className='text-body-small text-muted-foreground mt-2'>
                   Email alerts, system notifications, and reminder preferences
                 </p>
               </div>
@@ -502,7 +503,7 @@ export function SystemSettings() {
               <div className='bg-muted/30 p-6 rounded-lg text-center'>
                 <Shield className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
                 <p className='text-muted-foreground'>Data and privacy settings will be configured here</p>
-                <p className='text-sm text-muted-foreground mt-2'>
+                <p className='text-body-small text-muted-foreground mt-2'>
                   Data retention policies, privacy controls, and compliance settings
                 </p>
               </div>
@@ -520,7 +521,7 @@ export function SystemSettings() {
       {/* Page Header */}
       <div className='flex justify-between items-start'>
         <div>
-          <h1 className='text-2xl font-bold text-foreground mb-2'>
+          <h1 className='text-h1 font-bold text-foreground mb-2'>
             System Settings
           </h1>
           <p className='text-muted-foreground'>
@@ -528,21 +529,22 @@ export function SystemSettings() {
           </p>
         </div>
         <div className='flex gap-2'>
-          <button 
-            className='btn-tertiary flex items-center gap-2'
+          <Button 
+            variant="outline"
+            className="flex items-center gap-2"
             onClick={handleResetSettings}
           >
             <RotateCcw className='h-4 w-4' />
             Reset to Defaults
-          </button>
-          <button 
-            className='btn-primary flex items-center gap-2'
+          </Button>
+          <Button 
+            className="flex items-center gap-2"
             onClick={handleSaveSettings}
             disabled={isSaving}
           >
             <Save className='h-4 w-4' />
             {isSaving ? 'Saving...' : 'Save Changes'}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -555,7 +557,7 @@ export function SystemSettings() {
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
                 className={cn(
-                  'flex items-center gap-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors',
+                  'flex items-center gap-2 py-4 px-1 border-b-2 font-medium text-body-small transition-colors',
                   activeTab === tab.key
                     ? 'border-brand-red text-brand-red'
                     : 'border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground/50'
@@ -586,7 +588,7 @@ export function SystemSettings() {
       <div className='card bg-blue-50'>
         <div className='p-4'>
           <h4 className='font-semibold text-blue-800 mb-2'>Settings Information</h4>
-          <div className='text-sm text-blue-700 space-y-1'>
+          <div className='text-body-small text-blue-700 space-y-1'>
             <p>• Changes to settings are applied immediately after saving</p>
             <p>• Some settings may require a page refresh or re-login to take effect</p>
             <p>• Default settings can be restored using the "Reset to Defaults" button</p>

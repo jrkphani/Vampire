@@ -203,18 +203,18 @@ export const TicketLookup = React.memo(function TicketLookup({
             placeholder={placeholder}
             error={state.error || undefined}
             disabled={disabled || state.isLoading}
-            className='font-mono text-lg'
+            className='font-mono text-h3'
             helper='Format: B/MMYY/XXXX (e.g., B/0125/1234)'
             required
           />
         </div>
 
-        <div className='flex gap-2 items-end'>
+        <div className='flex gap-2 items-start pt-6'>
           <Button
-            variant='primary'
             onClick={handleTicketLookup}
             disabled={!state.isValid || state.isLoading || disabled}
-            className='px-6'
+            className='px-6 h-10'
+            size="default"
           >
             {state.isLoading && (
               <Loader2 className='mr-2 h-4 w-4 animate-spin' />
@@ -224,10 +224,12 @@ export const TicketLookup = React.memo(function TicketLookup({
 
           {state.ticketNumber && (
             <Button
-              variant='secondary'
+              variant='outline'
               onClick={handleClear}
               disabled={state.isLoading}
               title='Clear (Escape)'
+              className='h-10'
+              size="default"
             >
               Clear
             </Button>
@@ -241,7 +243,7 @@ export const TicketLookup = React.memo(function TicketLookup({
           <div className='card-header'>
             <h3 className='card-title'>Ticket Information</h3>
             <div className='mt-2 flex items-center gap-2'>
-              <span className='text-sm text-text-secondary'>Status:</span>
+              <span className='text-body-small text-text-secondary'>Status:</span>
               <TicketStatusBadge status={state.foundTicket.status} />
             </div>
           </div>
@@ -250,7 +252,7 @@ export const TicketLookup = React.memo(function TicketLookup({
             {/* Customer Information */}
             <div>
               <h4 className='font-semibold text-text-primary mb-3'>Customer</h4>
-              <div className='space-y-2 text-sm'>
+              <div className='space-y-2 text-body-small'>
                 <div>
                   <span className='text-text-secondary'>Name:</span>{' '}
                   <span className='font-semibold'>
@@ -277,7 +279,7 @@ export const TicketLookup = React.memo(function TicketLookup({
               <h4 className='font-semibold text-text-primary mb-3'>
                 Financial
               </h4>
-              <div className='space-y-2 text-sm'>
+              <div className='space-y-2 text-body-small'>
                 <div className='flex justify-between'>
                   <span className='text-text-secondary'>Principal:</span>
                   <span className='monetary-value'>
@@ -306,7 +308,7 @@ export const TicketLookup = React.memo(function TicketLookup({
             {/* Pledge Information */}
             <div>
               <h4 className='font-semibold text-text-primary mb-3'>Pledge</h4>
-              <div className='space-y-2 text-sm'>
+              <div className='space-y-2 text-body-small'>
                 <div>
                   <span className='text-text-secondary'>Pledge No:</span>{' '}
                   <span className='font-mono'>
@@ -327,7 +329,7 @@ export const TicketLookup = React.memo(function TicketLookup({
             {/* Date Information */}
             <div>
               <h4 className='font-semibold text-text-primary mb-3'>Dates</h4>
-              <div className='space-y-2 text-sm'>
+              <div className='space-y-2 text-body-small'>
                 <div>
                   <span className='text-text-secondary'>Pawn Date:</span>{' '}
                   <span>

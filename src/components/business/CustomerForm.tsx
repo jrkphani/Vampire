@@ -348,7 +348,7 @@ export function CustomerForm({
     <Card className={`space-y-6 ${className}`}>
       <div className='card-header'>
         <h3 className='card-title'>{title}</h3>
-        <p className='text-sm text-text-secondary mt-1'>
+        <p className='text-body-small text-text-secondary mt-1'>
           {customer
             ? 'Update customer information'
             : 'Enter customer information'}
@@ -369,7 +369,7 @@ export function CustomerForm({
                 placeholder='S1234567A'
                 error={state.errors.nric}
                 disabled={disabled || state.isLoading}
-                className='font-mono text-lg'
+                className='font-mono text-h3'
                 maxLength={9}
                 required
               />
@@ -567,7 +567,7 @@ export function CustomerForm({
             maxLength={500}
           />
           {state.errors.notes && (
-            <p className='mt-1 text-sm text-error'>{state.errors.notes}</p>
+            <p className='mt-1 text-body-small text-error'>{state.errors.notes}</p>
           )}
         </div>
 

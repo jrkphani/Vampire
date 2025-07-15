@@ -25,7 +25,7 @@ import {
 const navItems = [
   {
     title: 'Dashboard',
-    path: '/',
+    path: '/dashboard',
     icon: LayoutDashboard,
     shortcut: 'Ctrl+Home',
   },
@@ -110,13 +110,13 @@ function NavSection({ title, items, isCollapsed }: { title: string, items: typeo
                   className={clsx(
                     'nav-item',
                     isActive && 'active',
-                    !isCollapsed ? 'justify-between' : 'justify-center w-10 h-10'
+                    !isCollapsed ? 'justify-between' : 'justify-center px-2'
                   )}
                 >
                   <div className="flex items-center gap-3">
                     <item.icon className='h-5 w-5 flex-shrink-0' />
                     {!isCollapsed && (
-                      <span className='text-body-small font-medium'>{item.title}</span>
+                      <span className='text-body-small font-medium whitespace-nowrap'>{item.title}</span>
                     )}
                   </div>
                   {!isCollapsed && item.shortcut && (
@@ -151,7 +151,8 @@ export function Sidebar() {
   return (
     <nav className="app-sidebar">
       <div className={clsx(
-        'h-16 border-b border-border flex items-center transition-all duration-300',
+        'border-b border-border flex items-center transition-all duration-300',
+        'h-[var(--header-height)]', // Match header height exactly
         sidebarOpen ? 'px-6' : 'px-4 justify-center'
       )}>
         <div className='flex items-center gap-3'>
@@ -189,8 +190,8 @@ export function Sidebar() {
 
       {/* Bottom Section */}
       <div className={clsx(
-        'mt-auto p-4 border-t space-y-2',
-        !sidebarOpen && 'flex flex-col items-center'
+        'mt-auto border-t space-y-2 transition-all duration-300',
+        sidebarOpen ? 'p-4' : 'p-2 flex flex-col items-center'
       )}>
         <TooltipProvider>
           {/* Settings & Help */}
@@ -202,7 +203,7 @@ export function Sidebar() {
               <div
                 className={clsx(
                   'nav-item cursor-pointer mt-4',
-                  !sidebarOpen && 'justify-center w-10 h-10'
+                  !sidebarOpen && 'justify-center px-2'
                 )}
                 onClick={toggleSidebar}
               >
@@ -212,7 +213,7 @@ export function Sidebar() {
                   ) : (
                     <PanelLeftOpen className='h-5 w-5 flex-shrink-0' />
                   )}
-                  {sidebarOpen && <span className='text-body-small font-medium'>Collapse</span>}
+                  {sidebarOpen && <span className='text-body-small font-medium whitespace-nowrap'>Collapse</span>}
                 </div>
               </div>
             </TooltipTrigger>

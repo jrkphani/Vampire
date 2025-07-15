@@ -50,7 +50,7 @@ vi.mock('@/components/ui/compat', () => ({
     ({ onChange, onKeyDown, label, helper, error, ...props }, ref) => (
       <div className='w-full'>
         {label && (
-          <label className="block text-sm font-semibold text-foreground mb-2 after:content-['*'] after:text-destructive after:ml-1">
+          <label className="block text-body-small font-semibold text-foreground mb-2 after:content-['*'] after:text-destructive after:ml-1">
             {label}
           </label>
         )}
@@ -62,9 +62,9 @@ vi.mock('@/components/ui/compat', () => ({
           {...props}
           data-testid='ticket-input'
         />
-        {error && <p className='mt-1 text-sm text-destructive'>{error}</p>}
+        {error && <p className='mt-1 text-body-small text-destructive'>{error}</p>}
         {!error && helper && (
-          <p className='mt-1 text-sm text-muted-foreground'>{helper}</p>
+          <p className='mt-1 text-body-small text-muted-foreground'>{helper}</p>
         )}
       </div>
     )

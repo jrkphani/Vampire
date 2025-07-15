@@ -139,7 +139,7 @@ export function CreditRatingDetail() {
             Back
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Credit Rating Details</h1>
+            <h1 className="text-h1 font-bold text-foreground">Credit Rating Details</h1>
             <p className="text-muted-foreground">Customer credit assessment report</p>
           </div>
         </div>
@@ -147,7 +147,7 @@ export function CreditRatingDetail() {
         <Card className="bg-[var(--color-error)]/10 border-[var(--color-error)]/20">
           <CardContent className="p-6 text-center">
             <AlertTriangle className="h-12 w-12 text-[var(--color-error)] mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-[var(--color-error)] mb-2">Unable to Load Credit Details</h3>
+            <h3 className="text-h3 font-semibold text-[var(--color-error)] mb-2">Unable to Load Credit Details</h3>
             <p className="text-[var(--color-error)] mb-4">{error || 'Credit details not found'}</p>
             <Button 
               onClick={() => window.location.reload()}
@@ -166,15 +166,16 @@ export function CreditRatingDetail() {
     <div className="space-y-6">
       {/* Page Header */}
       <div className="flex items-center gap-4">
-        <button 
+        <Button 
+          variant="secondary"
           onClick={() => navigate('/reports/credit-rating')}
-          className="btn-secondary flex items-center gap-2"
+          className="flex items-center gap-2"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
-        </button>
+        </Button>
         <div>
-          <h1 className="text-2xl font-bold text-foreground">
+          <h1 className="text-h1 font-bold text-foreground">
             Credit Rating Details
           </h1>
           <p className="text-muted-foreground">
@@ -194,25 +195,25 @@ export function CreditRatingDetail() {
         <CardContent className="p-6 pt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div>
-              <div className="text-sm text-muted-foreground">Full Name</div>
+              <div className="text-body-small text-muted-foreground">Full Name</div>
               <div className="font-semibold">{creditDetails.customer.name}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">NRIC</div>
+              <div className="text-body-small text-muted-foreground">NRIC</div>
               <div className="font-mono font-semibold">{creditDetails.customer.nric}</div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Contact</div>
+              <div className="text-body-small text-muted-foreground">Contact</div>
               <div className="flex items-center gap-1">
                 <Phone className="h-4 w-4 text-muted-foreground" />
                 <span>{creditDetails.customer.contact}</span>
               </div>
             </div>
             <div>
-              <div className="text-sm text-muted-foreground">Address</div>
+              <div className="text-body-small text-muted-foreground">Address</div>
               <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm">{creditDetails.customer.address}</span>
+                <span className="text-body-small">{creditDetails.customer.address}</span>
               </div>
             </div>
           </div>
@@ -226,8 +227,8 @@ export function CreditRatingDetail() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-sm text-muted-foreground">Credit Score</div>
-                <div className="text-3xl font-bold text-foreground">
+                <div className="text-body-small text-muted-foreground">Credit Score</div>
+                <div className="text-display font-bold text-foreground">
                   {creditDetails.creditScore}
                 </div>
               </div>
@@ -237,7 +238,7 @@ export function CreditRatingDetail() {
             </div>
             <div className="mt-2">
               <span className={cn(
-                'px-2 py-1 rounded-full text-xs font-medium border',
+                'px-2 py-1 rounded-full text-caption font-medium border',
                 getRatingColor(creditDetails.rating)
               )}>
                 {creditDetails.rating}
@@ -251,8 +252,8 @@ export function CreditRatingDetail() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-sm text-muted-foreground">Risk Level</div>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-body-small text-muted-foreground">Risk Level</div>
+                <div className="text-h1 font-bold text-foreground">
                   {creditDetails.riskLevel}
                 </div>
               </div>
@@ -262,7 +263,7 @@ export function CreditRatingDetail() {
             </div>
             <div className="mt-2">
               <span className={cn(
-                'px-2 py-1 rounded-full text-xs font-medium',
+                'px-2 py-1 rounded-full text-caption font-medium',
                 getRiskColor(creditDetails.riskLevel)
               )}>
                 Risk Assessment
@@ -276,8 +277,8 @@ export function CreditRatingDetail() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-sm text-muted-foreground">Total Exposure</div>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-body-small text-muted-foreground">Total Exposure</div>
+                <div className="text-h1 font-bold text-foreground">
                   {formatCurrency(creditDetails.totalExposure)}
                 </div>
               </div>
@@ -285,7 +286,7 @@ export function CreditRatingDetail() {
                 <DollarSign className="h-6 w-6 text-[var(--color-success)]" />
               </div>
             </div>
-            <div className="mt-2 text-xs text-muted-foreground">
+            <div className="mt-2 text-caption text-muted-foreground">
               Current outstanding amount
             </div>
           </CardContent>
@@ -296,8 +297,8 @@ export function CreditRatingDetail() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-sm text-muted-foreground">Last Assessment</div>
-                <div className="text-lg font-bold text-foreground">
+                <div className="text-body-small text-muted-foreground">Last Assessment</div>
+                <div className="text-h3 font-bold text-foreground">
                   {formatDate(creditDetails.lastAssessmentDate)}
                 </div>
               </div>
@@ -305,7 +306,7 @@ export function CreditRatingDetail() {
                 <Calendar className="h-6 w-6 text-[var(--color-info)]" />
               </div>
             </div>
-            <div className="mt-2 text-xs text-muted-foreground">
+            <div className="mt-2 text-caption text-muted-foreground">
               Assessment date
             </div>
           </CardContent>
@@ -328,14 +329,14 @@ export function CreditRatingDetail() {
                 <div key={index} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
                   <div>
                     <div className="font-medium">{transaction.type}</div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-body-small text-muted-foreground">
                       {formatDate(transaction.date)}
                     </div>
                   </div>
                   <div className="text-right">
                     <div className="font-semibold">{formatCurrency(transaction.amount)}</div>
                     <div className={cn(
-                      'text-xs',
+                      'text-caption',
                       transaction.status === 'completed' ? 'text-[var(--color-success)]' : 'text-[var(--color-warning)]'
                     )}>
                       {transaction.status}
@@ -367,10 +368,10 @@ export function CreditRatingDetail() {
                     ) : (
                       <Clock className="h-4 w-4 text-[var(--color-warning)]" />
                     )}
-                    <span className="text-sm">{factor.factor}</span>
+                    <span className="text-body-small">{factor.factor}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">{factor.weight}%</span>
+                    <span className="text-body-small font-medium">{factor.weight}%</span>
                     <div className={cn(
                       'w-2 h-2 rounded-full',
                       factor.impact === 'positive' ? 'bg-[var(--color-success)]' :
@@ -397,7 +398,7 @@ export function CreditRatingDetail() {
                 {creditDetails.recommendations.map((rec, index) => (
                   <li key={index} className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 text-[var(--color-success)] mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">{rec}</span>
+                    <span className="text-body-small">{rec}</span>
                   </li>
                 ))}
               </ul>
@@ -405,14 +406,14 @@ export function CreditRatingDetail() {
             <div>
               <h4 className="font-semibold text-foreground mb-3">Risk Mitigation</h4>
               <div className="bg-muted/30 p-4 rounded-lg">
-                <div className="text-sm text-muted-foreground mb-2">Current Risk Level</div>
+                <div className="text-body-small text-muted-foreground mb-2">Current Risk Level</div>
                 <div className={cn(
-                  'px-3 py-1 rounded-full text-sm font-medium inline-block',
+                  'px-3 py-1 rounded-full text-body-small font-medium inline-block',
                   getRiskColor(creditDetails.riskLevel)
                 )}>
                   {creditDetails.riskLevel} Risk
                 </div>
-                <div className="mt-3 text-sm">
+                <div className="mt-3 text-body-small">
                   <strong>Recommended Credit Limit:</strong> {formatCurrency(creditDetails.recommendedCreditLimit)}
                 </div>
               </div>
@@ -427,7 +428,7 @@ export function CreditRatingDetail() {
           <FileText className="h-4 w-4 mr-2" />
           Export Report
         </Button>
-        <Button variant="primary">
+        <Button variant="default">
           <TrendingUp className="h-4 w-4 mr-2" />
           Update Assessment
         </Button>

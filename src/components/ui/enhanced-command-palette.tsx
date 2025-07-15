@@ -128,13 +128,13 @@ const CommandResultItem: React.FC<{
           <span className='font-medium truncate'>{result.title}</span>
           {result.recent && <Clock className='h-3 w-3 shrink-0 opacity-60' />}
           {result.badge && (
-            <Badge variant='secondary' className='text-xs'>
+            <Badge variant='secondary' className='text-caption'>
               {result.badge}
             </Badge>
           )}
         </div>
         {result.description && (
-          <p className='text-xs text-muted-foreground truncate'>
+          <p className='text-caption text-muted-foreground truncate'>
             {result.description}
           </p>
         )}
@@ -160,12 +160,12 @@ const CustomerResultItem: React.FC<{
       <div className='flex-1 min-w-0'>
         <div className='flex items-center gap-2'>
           <span className='font-medium truncate'>{customer.name}</span>
-          <Badge variant='outline' className='text-xs'>
+          <Badge variant='outline' className='text-caption'>
             Customer
           </Badge>
           {result.recent && <Clock className='h-3 w-3 shrink-0 opacity-60' />}
         </div>
-        <div className='flex items-center gap-4 text-xs text-muted-foreground'>
+        <div className='flex items-center gap-4 text-caption text-muted-foreground'>
           <span className='flex items-center gap-1'>
             <Hash className='h-3 w-3' />
             {customer.nric}
@@ -223,13 +223,13 @@ const TicketResultItem: React.FC<{
                   ? 'secondary'
                   : 'default'
             }
-            className='text-xs'
+            className='text-caption'
           >
             {ticket.status}
           </Badge>
           {result.recent && <Clock className='h-3 w-3 shrink-0 opacity-60' />}
         </div>
-        <div className='flex items-center gap-4 text-xs text-muted-foreground'>
+        <div className='flex items-center gap-4 text-caption text-muted-foreground'>
           <span className='flex items-center gap-1'>
             <User className='h-3 w-3' />
             {ticket.customer.name}
@@ -243,7 +243,7 @@ const TicketResultItem: React.FC<{
             Expires {formatDate(ticket.dates.expiryDate)}
           </span>
         </div>
-        <p className='text-xs text-muted-foreground truncate mt-1'>
+        <p className='text-caption text-muted-foreground truncate mt-1'>
           {ticket.pledge.description}
         </p>
       </div>
@@ -278,12 +278,12 @@ const TransactionResultItem: React.FC<{
           <span className='font-medium truncate'>
             {transaction.type.toUpperCase()}
           </span>
-          <Badge variant='outline' className='text-xs'>
+          <Badge variant='outline' className='text-caption'>
             {transaction.status}
           </Badge>
           {result.recent && <Clock className='h-3 w-3 shrink-0 opacity-60' />}
         </div>
-        <div className='flex items-center gap-4 text-xs text-muted-foreground'>
+        <div className='flex items-center gap-4 text-caption text-muted-foreground'>
           <span className='flex items-center gap-1'>
             <Package className='h-3 w-3' />
             {transaction.ticketNo}
@@ -583,7 +583,7 @@ export function EnhancedCommandPalette({
 
           {/* Search Info Bar */}
           {search && (
-            <div className='px-4 py-2 border-b bg-muted/30 text-xs text-muted-foreground'>
+            <div className='px-4 py-2 border-b bg-muted/30 text-caption text-muted-foreground'>
               <div className='flex items-center justify-between'>
                 <span>
                   {getSearchTypeDescription(detectedType)} • {results.length}{' '}
@@ -603,7 +603,7 @@ export function EnhancedCommandPalette({
                     <AlertCircle className='h-8 w-8 opacity-50' />
                     <div>
                       <p className='font-medium'>No results found</p>
-                      <p className='text-sm text-muted-foreground'>
+                      <p className='text-body-small text-muted-foreground'>
                         Try a different search term or check the spelling
                       </p>
                     </div>
@@ -613,7 +613,7 @@ export function EnhancedCommandPalette({
                     <Search className='h-8 w-8 opacity-50' />
                     <div>
                       <p className='font-medium'>Start typing to search</p>
-                      <p className='text-sm text-muted-foreground'>
+                      <p className='text-body-small text-muted-foreground'>
                         Search commands, customers, tickets, or transactions
                       </p>
                     </div>
@@ -630,23 +630,23 @@ export function EnhancedCommandPalette({
           </CommandList>
 
           {/* Footer */}
-          <div className='border-t bg-muted/50 px-4 py-3 text-xs text-muted-foreground'>
+          <div className='border-t bg-muted/50 px-4 py-3 text-caption text-muted-foreground'>
             <div className='flex items-center justify-between'>
               <div className='flex items-center gap-4'>
                 <span className='flex items-center gap-1'>
-                  <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium text-muted-foreground opacity-100'>
+                  <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-caption font-medium text-muted-foreground opacity-100'>
                     ↑↓
                   </kbd>
                   Navigate
                 </span>
                 <span className='flex items-center gap-1'>
-                  <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium text-muted-foreground opacity-100'>
+                  <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-caption font-medium text-muted-foreground opacity-100'>
                     ↵
                   </kbd>
                   Select
                 </span>
                 <span className='flex items-center gap-1'>
-                  <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium text-muted-foreground opacity-100'>
+                  <kbd className='pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-caption font-medium text-muted-foreground opacity-100'>
                     esc
                   </kbd>
                   Close

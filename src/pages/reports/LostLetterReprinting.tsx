@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, FileText, Printer, Eye } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface CustomerDetails {
   name: string;
@@ -101,7 +102,7 @@ export function LostLetterReprinting() {
       {/* Page Header */}
       <div className='flex justify-between items-start'>
         <div>
-          <h1 className='text-2xl font-bold text-foreground mb-2'>
+          <h1 className='text-h1 font-bold text-foreground mb-2'>
             Lost Letter Reprinting
           </h1>
           <p className='text-muted-foreground'>
@@ -109,8 +110,8 @@ export function LostLetterReprinting() {
           </p>
         </div>
         <div className='text-right'>
-          <div className='text-sm text-muted-foreground'>Function</div>
-          <div className='text-lg font-semibold text-foreground font-mono'>FUNC-05</div>
+          <div className='text-body-small text-muted-foreground'>Function</div>
+          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-05</div>
         </div>
       </div>
 
@@ -121,7 +122,7 @@ export function LostLetterReprinting() {
             <Search className='h-5 w-5' />
             Receipt Lookup
           </h3>
-          <p className='text-sm text-muted-foreground mt-1'>
+          <p className='text-body-small text-muted-foreground mt-1'>
             Enter receipt details to locate the transaction for reprinting
           </p>
         </div>
@@ -158,8 +159,8 @@ export function LostLetterReprinting() {
             </div>
           </div>
           <div className='mt-6'>
-            <button 
-              className='btn-primary flex items-center gap-2'
+            <Button 
+              className="flex items-center gap-2"
               onClick={handleReceiptLookup}
               disabled={!receiptNumber.trim() || isSearching}
             >
@@ -174,7 +175,7 @@ export function LostLetterReprinting() {
                   Lookup Receipt
                 </>
               )}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -187,7 +188,7 @@ export function LostLetterReprinting() {
               <FileText className='h-5 w-5' />
               Lost Letter Details
             </h3>
-            <p className='text-sm text-muted-foreground mt-1'>
+            <p className='text-body-small text-muted-foreground mt-1'>
               Transaction details for receipt: <span className='text-mono font-semibold'>{receiptNumber}</span>
             </p>
           </div>
@@ -198,20 +199,20 @@ export function LostLetterReprinting() {
                 <h4 className='font-semibold text-foreground mb-3'>Customer Details</h4>
                 <dl className='space-y-2'>
                   <div className='flex justify-between'>
-                    <dt className='text-sm text-muted-foreground'>Name:</dt>
-                    <dd className='text-sm font-medium text-foreground'>{customerDetails.name}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Name:</dt>
+                    <dd className='text-body-small font-medium text-foreground'>{customerDetails.name}</dd>
                   </div>
                   <div className='flex justify-between'>
-                    <dt className='text-sm text-muted-foreground'>NRIC:</dt>
-                    <dd className='text-sm font-medium text-foreground text-mono'>{customerDetails.nric}</dd>
+                    <dt className='text-body-small text-muted-foreground'>NRIC:</dt>
+                    <dd className='text-body-small font-medium text-foreground text-mono'>{customerDetails.nric}</dd>
                   </div>
                   <div className='flex justify-between'>
-                    <dt className='text-sm text-muted-foreground'>Contact:</dt>
-                    <dd className='text-sm font-medium text-foreground'>{customerDetails.contact}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Contact:</dt>
+                    <dd className='text-body-small font-medium text-foreground'>{customerDetails.contact}</dd>
                   </div>
                   <div className='flex flex-col'>
-                    <dt className='text-sm text-muted-foreground'>Address:</dt>
-                    <dd className='text-sm font-medium text-foreground mt-1'>{customerDetails.address}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Address:</dt>
+                    <dd className='text-body-small font-medium text-foreground mt-1'>{customerDetails.address}</dd>
                   </div>
                 </dl>
               </div>
@@ -221,28 +222,28 @@ export function LostLetterReprinting() {
                 <h4 className='font-semibold text-foreground mb-3'>Transaction Details</h4>
                 <dl className='space-y-2'>
                   <div className='flex justify-between'>
-                    <dt className='text-sm text-muted-foreground'>Ticket Number:</dt>
-                    <dd className='text-sm font-medium text-foreground text-mono'>{transactionDetails.ticketNumber}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Ticket Number:</dt>
+                    <dd className='text-body-small font-medium text-foreground text-mono'>{transactionDetails.ticketNumber}</dd>
                   </div>
                   <div className='flex flex-col'>
-                    <dt className='text-sm text-muted-foreground'>Pledge Item:</dt>
-                    <dd className='text-sm font-medium text-foreground mt-1'>{transactionDetails.pledgeItem}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Pledge Item:</dt>
+                    <dd className='text-body-small font-medium text-foreground mt-1'>{transactionDetails.pledgeItem}</dd>
                   </div>
                   <div className='flex justify-between'>
-                    <dt className='text-sm text-muted-foreground'>Type:</dt>
-                    <dd className='text-sm font-medium text-foreground'>{transactionDetails.transactionType}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Type:</dt>
+                    <dd className='text-body-small font-medium text-foreground'>{transactionDetails.transactionType}</dd>
                   </div>
                   <div className='flex justify-between'>
-                    <dt className='text-sm text-muted-foreground'>Amount:</dt>
-                    <dd className='text-sm font-medium text-foreground monetary-value'>{formatCurrency(transactionDetails.amount)}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Amount:</dt>
+                    <dd className='text-body-small font-medium text-foreground monetary-value'>{formatCurrency(transactionDetails.amount)}</dd>
                   </div>
                   <div className='flex justify-between'>
-                    <dt className='text-sm text-muted-foreground'>Transaction Date:</dt>
-                    <dd className='text-sm font-medium text-foreground'>{formatDate(transactionDetails.transactionDate)}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Transaction Date:</dt>
+                    <dd className='text-body-small font-medium text-foreground'>{formatDate(transactionDetails.transactionDate)}</dd>
                   </div>
                   <div className='flex justify-between'>
-                    <dt className='text-sm text-muted-foreground'>Expiry Date:</dt>
-                    <dd className='text-sm font-medium text-foreground'>{formatDate(transactionDetails.expiryDate)}</dd>
+                    <dt className='text-body-small text-muted-foreground'>Expiry Date:</dt>
+                    <dd className='text-body-small font-medium text-foreground'>{formatDate(transactionDetails.expiryDate)}</dd>
                   </div>
                 </dl>
               </div>
@@ -254,7 +255,7 @@ export function LostLetterReprinting() {
                 <FileText className='h-5 w-5' />
                 <span className='font-semibold'>Transaction Found</span>
               </div>
-              <p className='text-sm text-green-700 mt-1'>
+              <p className='text-body-small text-green-700 mt-1'>
                 Original transaction located successfully. You can now proceed with reprinting the letter.
               </p>
             </div>
@@ -270,7 +271,7 @@ export function LostLetterReprinting() {
               <Printer className='h-5 w-5' />
               Reprint Options
             </h3>
-            <p className='text-sm text-muted-foreground mt-1'>
+            <p className='text-body-small text-muted-foreground mt-1'>
               Configure letter type, format, and number of copies for reprinting
             </p>
           </div>
@@ -332,7 +333,7 @@ export function LostLetterReprinting() {
             {/* Print Summary */}
             <div className='bg-muted rounded-lg p-4 mb-6'>
               <h4 className='font-semibold text-foreground mb-3'>Print Summary</h4>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-sm'>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-body-small'>
                 <div>
                   <div className='flex justify-between mb-2'>
                     <span>Document Type:</span>
@@ -358,26 +359,28 @@ export function LostLetterReprinting() {
 
             {/* Action Buttons */}
             <div className='flex gap-4'>
-              <button 
-                className='btn-tertiary flex items-center gap-2'
+              <Button 
+                variant="outline"
+                className="flex items-center gap-2"
                 onClick={handleClearForm}
               >
                 Clear Form
-              </button>
-              <button 
-                className='btn-secondary flex items-center gap-2'
+              </Button>
+              <Button 
+                variant="secondary"
+                className="flex items-center gap-2"
                 onClick={handlePreviewLetter}
               >
                 <Eye className='h-4 w-4' />
                 Preview Letter
-              </button>
-              <button 
-                className='btn-primary flex items-center gap-2'
+              </Button>
+              <Button 
+                className="flex items-center gap-2"
                 onClick={handleGeneratePrint}
               >
                 <Printer className='h-4 w-4' />
                 Generate & Print
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -387,7 +390,7 @@ export function LostLetterReprinting() {
       <div className='card bg-blue-50'>
         <div className='p-4'>
           <h4 className='font-semibold text-blue-800 mb-2'>Reprint Guidelines</h4>
-          <div className='text-sm text-blue-700 space-y-1'>
+          <div className='text-body-small text-blue-700 space-y-1'>
             <p>• Receipt number is required and must match the original transaction</p>
             <p>• Transaction date can be used as an additional filter for faster lookup</p>
             <p>• All reprinted documents will be marked as "DUPLICATE COPY"</p>

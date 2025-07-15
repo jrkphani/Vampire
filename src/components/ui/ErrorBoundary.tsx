@@ -249,10 +249,10 @@ export class ErrorBoundary extends Component<
 
     return (
       <details className='mt-4'>
-        <summary className='cursor-pointer text-sm font-medium text-muted-foreground hover:text-foreground'>
+        <summary className='cursor-pointer text-body-small font-medium text-muted-foreground hover:text-foreground'>
           Technical Details
         </summary>
-        <div className='mt-2 p-3 bg-muted rounded border text-xs font-mono text-muted-foreground'>
+        <div className='mt-2 p-3 bg-muted rounded border text-caption font-mono text-muted-foreground'>
           <div>
             <strong>Error ID:</strong> {this.state.errorId}
           </div>
@@ -273,7 +273,7 @@ export class ErrorBoundary extends Component<
           {this.state.error.stack && (
             <details className='mt-2'>
               <summary className='cursor-pointer'>Stack Trace</summary>
-              <pre className='mt-1 whitespace-pre-wrap text-xs'>
+              <pre className='mt-1 whitespace-pre-wrap text-caption'>
                 {this.state.error.stack}
               </pre>
             </details>
@@ -334,7 +334,7 @@ export class ErrorBoundary extends Component<
               </div>
             </div>
 
-            <h1 className='text-xl font-semibold text-foreground mb-2'>
+            <h1 className='text-h2 font-semibold text-foreground mb-2'>
               {this.getErrorTitle()}
             </h1>
 
@@ -343,7 +343,7 @@ export class ErrorBoundary extends Component<
             </p>
 
             {this.state.errorId && (
-              <p className='text-xs text-muted-foreground mb-4'>
+              <p className='text-caption text-muted-foreground mb-4'>
                 Error ID: {this.state.errorId}
               </p>
             )}
@@ -357,7 +357,7 @@ export class ErrorBoundary extends Component<
                   <Bug className='w-4 h-4' />
                   Development Info
                 </div>
-                <pre className='text-xs text-warning whitespace-pre-wrap'>
+                <pre className='text-caption text-warning whitespace-pre-wrap'>
                   {this.state.error?.message}
                 </pre>
               </div>

@@ -86,7 +86,7 @@ export function HeroPage() {
 
               {/* Call-to-Action Row */}
               <div className="flex flex-wrap gap-4">
-                <Button asChild variant="primary" size="lg" className="text-lg px-8 py-4">
+                <Button asChild size="lg" className="text-h3 px-8 py-4">
                   <Link 
                     to="/login" 
                     className="inline-flex items-center gap-2"
@@ -95,7 +95,7 @@ export function HeroPage() {
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                 </Button>
-                <Button variant="tertiary" size="lg" className="text-lg px-8 py-4">
+                <Button variant="outline" size="lg" className="text-h3 px-8 py-4">
                   Talk to Our Team
                 </Button>
               </div>

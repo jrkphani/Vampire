@@ -62,8 +62,8 @@ export function MockLogin() {
           <div className="mx-auto h-16 w-16 bg-brand-red rounded-full flex items-center justify-center mb-6">
             <Shield className="h-8 w-8 text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">ValueMax Vampire</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="text-display font-bold text-gray-900">ValueMax Vampire</h2>
+          <p className="mt-2 text-body-small text-gray-600">
             Development Mock Login
           </p>
         </div>
@@ -75,9 +75,9 @@ export function MockLogin() {
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-3">
                 <Users className="h-5 w-5 text-brand-red" />
-                <h3 className="text-lg font-semibold text-gray-900">Quick Login</h3>
+                <h3 className="text-h3 font-semibold text-gray-900">Quick Login</h3>
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-body-small text-gray-600">
                 Select a staff member to login instantly
               </p>
             </div>
@@ -96,10 +96,10 @@ export function MockLogin() {
                       <div className="font-semibold text-gray-900">
                         {staffMember.name}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-body-small text-gray-600">
                         {staffMember.role} • {staffMember.code}
                       </div>
-                      <div className="text-xs text-gray-500 mt-1">
+                      <div className="text-caption text-gray-500 mt-1">
                         Permissions: {staffMember.permissions.slice(0, 3).join(', ')}
                         {staffMember.permissions.length > 3 && ` +${staffMember.permissions.length - 3} more`}
                       </div>
@@ -118,7 +118,7 @@ export function MockLogin() {
 
             {/* Development Notice */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <div className="text-center text-sm">
+              <div className="text-center text-body-small">
                 <p className="text-blue-800 font-semibold mb-1">Development Mode</p>
                 <p className="text-blue-700">
                   This is a development-only feature for faster testing.
@@ -129,12 +129,12 @@ export function MockLogin() {
 
             {/* Alternative Login Link */}
             <div className="text-center pt-4 border-t">
-              <p className="text-sm text-gray-600">
+              <p className="text-body-small text-gray-600">
                 Need to test credential authentication?
               </p>
               <button
                 onClick={() => navigate('/login-form')}
-                className="text-brand-red hover:text-red-700 font-medium text-sm"
+                className="text-brand-red hover:text-red-700 font-medium text-body-small"
               >
                 Use Standard Login Form
               </button>
@@ -143,7 +143,7 @@ export function MockLogin() {
         </div>
 
         {/* Footer */}
-        <div className="text-center text-sm text-gray-500">
+        <div className="text-center text-body-small text-gray-500">
           <p>ValueMax Pawnshop Operations System</p>
           <p>Development Environment</p>
         </div>

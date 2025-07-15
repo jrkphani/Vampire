@@ -207,12 +207,12 @@ export function Heading({ level, children, className, id }: HeadingProps) {
       className={clsx(
         'font-semibold text-text-primary',
         {
-          'text-2xl': level === 1,
-          'text-xl': level === 2,
-          'text-lg': level === 3,
-          'text-base': level === 4,
-          'text-sm': level === 5,
-          'text-xs': level === 6,
+          'text-h1': level === 1,
+          'text-h2': level === 2,
+          'text-h3': level === 3,
+          'text-body': level === 4,
+          'text-body-small': level === 5,
+          'text-caption': level === 6,
         },
         className
       )}

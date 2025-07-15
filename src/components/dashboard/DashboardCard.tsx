@@ -30,12 +30,12 @@ export function DashboardCard({
         </h3>
       </div>
       <div className="card-content p-6 pt-0">
-        <div className="text-2xl font-bold text-foreground mb-2">
+        <div className="text-h1 font-bold text-foreground mb-2">
           {value}
         </div>
         {trend && (
           <div className={cn(
-            'text-sm flex items-center gap-1',
+            'text-body-small flex items-center gap-1',
             trend.isPositive ? 'text-success' : 'text-destructive'
           )}>
             <span>{trend.isPositive ? '↗' : '↘'}</span>

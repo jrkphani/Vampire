@@ -55,7 +55,7 @@ export const InputCompat = forwardRef<HTMLInputElement, LegacyInputProps>(
           <label
             htmlFor={props.id}
             className={cn(
-              'block text-sm font-semibold text-foreground mb-2',
+              'block text-body-small font-semibold text-foreground mb-2',
               required &&
                 "after:content-['*'] after:text-destructive after:ml-1"
             )}
@@ -77,11 +77,11 @@ export const InputCompat = forwardRef<HTMLInputElement, LegacyInputProps>(
         />
 
         {helper && !error && (
-          <p className='mt-1 text-sm text-muted-foreground'>{helper}</p>
+          <p className='mt-1 text-body-small text-muted-foreground'>{helper}</p>
         )}
 
         {error && (
-          <p id={`${props.id}-error`} className='mt-1 text-sm text-destructive'>
+          <p id={`${props.id}-error`} className='mt-1 text-body-small text-destructive'>
             {error}
           </p>
         )}

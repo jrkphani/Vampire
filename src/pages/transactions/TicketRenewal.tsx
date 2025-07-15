@@ -345,7 +345,7 @@ export function TicketRenewal() {
       {/* Page Header */}
       <div className='flex justify-between items-start'>
         <div>
-          <h1 className='text-2xl font-bold text-foreground mb-2'>
+          <h1 className='text-h1 font-bold text-foreground mb-2'>
             Ticket Renewals
           </h1>
           <p className='text-muted-foreground'>
@@ -353,8 +353,8 @@ export function TicketRenewal() {
           </p>
         </div>
         <div className='text-right'>
-          <div className='text-sm text-muted-foreground'>Function</div>
-          <div className='text-lg font-semibold text-foreground font-mono'>FUNC-01</div>
+          <div className='text-body-small text-muted-foreground'>Function</div>
+          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-01</div>
         </div>
       </div>
 
@@ -389,18 +389,21 @@ export function TicketRenewal() {
                       onKeyPress={handleTicketKeyPress}
                     />
                     {errors.ticketNumber && (
-                      <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                      <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                         <AlertCircle className='h-4 w-4' />
                         {errors.ticketNumber.message}
                       </div>
                     )}
                     <div className='text-caption'>Press Enter to lookup</div>
                   </div>
-                  <div className='flex items-end'>
+                  <div className='form-group'>
+                    <label className='form-label opacity-0 select-none' aria-hidden='true'>
+                      Action
+                    </label>
                     <Button 
                       type='button'
-                      variant='secondary'
-                      className='flex items-center gap-2 w-full'
+                      variant='outline'
+                      className='flex items-center gap-2 w-full h-10'
                       onClick={handleTicketLookup}
                       disabled={isLookingUp || !watch('ticketNumber')}
                     >
@@ -431,11 +434,11 @@ export function TicketRenewal() {
                       <AlertCircle className='h-5 w-5' />
                       <span className='font-semibold'>Lookup Failed</span>
                     </div>
-                    <p className='text-red-700 mt-1 text-sm'>{lookupError}</p>
+                    <p className='text-red-700 mt-1 text-body-small'>{lookupError}</p>
                     <div className='mt-3'>
                       <button
                         type='button'
-                        className='text-red-600 hover:text-red-800 text-sm underline'
+                        className='text-red-600 hover:text-red-800 text-body-small underline'
                         onClick={() => {
                           setLookupError(null);
                           clearError('ticketLookup');
@@ -470,7 +473,7 @@ export function TicketRenewal() {
                         readOnly
                       />
                       {errors.customerName && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.customerName.message}
                         </div>
@@ -487,7 +490,7 @@ export function TicketRenewal() {
                         readOnly
                       />
                       {errors.nric && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.nric.message}
                         </div>
@@ -503,7 +506,7 @@ export function TicketRenewal() {
                         readOnly
                       />
                       {errors.contact && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.contact.message}
                         </div>
@@ -520,7 +523,7 @@ export function TicketRenewal() {
                         readOnly
                       />
                       {errors.pledgeWeight && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.pledgeWeight.message}
                         </div>
@@ -536,7 +539,7 @@ export function TicketRenewal() {
                         readOnly
                       />
                       {errors.pledgeDescription && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.pledgeDescription.message}
                         </div>
@@ -574,7 +577,7 @@ export function TicketRenewal() {
                         readOnly
                       />
                       {errors.originalAmount && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.originalAmount.message}
                         </div>
@@ -593,7 +596,7 @@ export function TicketRenewal() {
                         readOnly
                       />
                       {errors.interestAmount && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.interestAmount.message}
                         </div>
@@ -641,7 +644,7 @@ export function TicketRenewal() {
                         </SelectContent>
                       </Select>
                       {errors.paymentMethod && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.paymentMethod.message}
                         </div>
@@ -660,7 +663,7 @@ export function TicketRenewal() {
                         placeholder='0.00'
                       />
                       {errors.collectedAmount && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.collectedAmount.message}
                         </div>
@@ -686,7 +689,7 @@ export function TicketRenewal() {
                         type='date'
                       />
                       {errors.renewalDate && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.renewalDate.message}
                         </div>
@@ -702,7 +705,7 @@ export function TicketRenewal() {
                         type='date'
                       />
                       {errors.newExpiryDate && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.newExpiryDate.message}
                         </div>
@@ -719,7 +722,7 @@ export function TicketRenewal() {
                         placeholder='Optional remarks or notes'
                       />
                       {errors.remarks && (
-                        <div className='flex items-center gap-1 mt-1 text-sm text-red-600'>
+                        <div className='flex items-center gap-1 mt-1 text-body-small text-red-600'>
                           <AlertCircle className='h-4 w-4' />
                           {errors.remarks.message}
                         </div>
@@ -731,11 +734,11 @@ export function TicketRenewal() {
                   <div className='mt-6 p-4 bg-muted rounded-lg'>
                     <h4 className='font-semibold text-foreground mb-3'>Payment Summary</h4>
                     <div className='space-y-2'>
-                      <div className='flex justify-between text-sm'>
+                      <div className='flex justify-between text-body-small'>
                         <span>Total Amount Due:</span>
                         <span className='font-mono font-semibold'>{formatCurrency(watch('totalAmount') || 0)}</span>
                       </div>
-                      <div className='flex justify-between text-sm'>
+                      <div className='flex justify-between text-body-small'>
                         <span>Amount Collected:</span>
                         <span className={cn(
                           'font-mono',
@@ -757,7 +760,7 @@ export function TicketRenewal() {
                       </div>
                       {/* Payment Status Indicator */}
                       <div className='mt-3 pt-2 border-t'>
-                        <div className='flex items-center gap-2 text-sm'>
+                        <div className='flex items-center gap-2 text-body-small'>
                           {(watch('collectedAmount') || 0) < (watch('totalAmount') || 0) ? (
                             <>
                               <AlertCircle className='h-4 w-4 text-orange-500' />
@@ -794,7 +797,7 @@ export function TicketRenewal() {
               </h4>
               <div className='space-y-1'>
                 {Object.entries(transactionErrors).map(([field, error]) => (
-                  <p key={field} className='text-red-700 text-sm'>
+                  <p key={field} className='text-red-700 text-body-small'>
                     <strong>{field}:</strong> {error}
                   </p>
                 ))}

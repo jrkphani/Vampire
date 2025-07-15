@@ -61,8 +61,8 @@ export function Logout() {
           <div className="mx-auto h-16 w-16 bg-brand-red rounded-full flex items-center justify-center mb-6">
             <Shield className="h-8 w-8 text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">ValueMax Vampire</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="text-display font-bold text-gray-900">ValueMax Vampire</h2>
+          <p className="mt-2 text-body-small text-gray-600">
             Logging you out securely...
           </p>
         </div>
@@ -82,14 +82,14 @@ export function Logout() {
                   <CheckCircle2 className="h-5 w-5" />
                   <span className="font-semibold">Goodbye, {staff.name}</span>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-body-small text-gray-600">
                   Your session has been terminated securely.
                 </p>
               </div>
             )}
             
             {/* Progress Steps */}
-            <div className="space-y-3 text-sm text-gray-600">
+            <div className="space-y-3 text-body-small text-gray-600">
               <div className="flex items-center justify-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Clearing session data...</span>
@@ -105,7 +105,7 @@ export function Logout() {
             </div>
             
             <div className="pt-4 border-t">
-              <p className="text-xs text-gray-500">
+              <p className="text-caption text-gray-500">
                 Please wait while we securely log you out of the system.
               </p>
             </div>
@@ -113,7 +113,7 @@ export function Logout() {
         </div>
 
         {/* Security Notice */}
-        <div className="text-center text-sm text-gray-500 space-y-2">
+        <div className="text-center text-body-small text-gray-500 space-y-2">
           <p className="font-semibold">Security Notice:</p>
           <p>For additional security, please close all browser windows.</p>
         </div>

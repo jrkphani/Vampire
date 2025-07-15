@@ -119,8 +119,8 @@ export function Login() {
           <div className="mx-auto h-16 w-16 bg-brand-red rounded-full flex items-center justify-center mb-6">
             <Shield className="h-8 w-8 text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">ValueMax Vampire</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="text-h1 font-bold text-gray-900">ValueMax Vampire</h2>
+          <p className="mt-2 text-body-small text-gray-600">
             Staff Authentication Required
           </p>
         </div>
@@ -135,7 +135,7 @@ export function Login() {
                   <AlertCircle className="h-5 w-5" />
                   <span className="font-semibold">Login Failed</span>
                 </div>
-                <p className="text-red-700 mt-1 text-sm">{loginError}</p>
+                <p className="text-red-700 mt-1 text-body-small">{loginError}</p>
               </div>
             )}
 
@@ -157,7 +157,7 @@ export function Login() {
                 autoFocus
               />
               {errors.staffId && (
-                <div className="flex items-center gap-1 mt-1 text-sm text-red-600">
+                <div className="flex items-center gap-1 mt-1 text-body-small text-red-600">
                   <AlertCircle className="h-4 w-4" />
                   {errors.staffId.message}
                 </div>
@@ -194,7 +194,7 @@ export function Login() {
                 </button>
               </div>
               {errors.password && (
-                <div className="flex items-center gap-1 mt-1 text-sm text-red-600">
+                <div className="flex items-center gap-1 mt-1 text-body-small text-red-600">
                   <AlertCircle className="h-4 w-4" />
                   {errors.password.message}
                 </div>
@@ -209,7 +209,7 @@ export function Login() {
                 type="checkbox"
                 className="h-4 w-4 text-brand-red focus:ring-brand-red border-gray-300 rounded"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+              <label htmlFor="remember-me" className="ml-2 block text-body-small text-gray-900">
                 Remember me for 30 days
               </label>
             </div>
@@ -218,7 +218,7 @@ export function Login() {
             <Button
               type="submit"
               disabled={isLoading}
-              variant="primary"
+              variant="default"
               className="w-full flex items-center justify-center"
             >
               {isLoading ? (
@@ -237,14 +237,14 @@ export function Login() {
 
           {/* Footer */}
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-body-small text-gray-600">
               Secure access to ValueMax pawnshop operations
             </p>
           </div>
         </div>
 
         {/* Help Text */}
-        <div className="text-center text-sm text-gray-500">
+        <div className="text-center text-body-small text-gray-500">
           <p>Having trouble logging in?</p>
           <p>Contact your system administrator for assistance.</p>
         </div>
@@ -252,8 +252,8 @@ export function Login() {
         {/* Demo Credentials (for development) */}
         {process.env.NODE_ENV === 'development' && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
-            <p className="text-sm text-blue-800 font-semibold mb-2">Demo Credentials:</p>
-            <div className="text-xs text-blue-700 space-y-1">
+            <p className="text-body-small text-blue-800 font-semibold mb-2">Demo Credentials:</p>
+            <div className="text-caption text-blue-700 space-y-1">
               <p><strong>Staff ID:</strong> STAFF001</p>
               <p><strong>Password:</strong> password123</p>
             </div>

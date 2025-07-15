@@ -135,7 +135,7 @@ export function UIShowcase() {
         <Heading level={1} className='mb-4'>
           ValueMax Vampire UI Components
         </Heading>
-        <p className='text-text-secondary text-lg'>
+        <p className='text-text-secondary text-h3'>
           Professional pawnshop interface components with comprehensive
           accessibility
         </p>
@@ -366,7 +366,7 @@ export function UIShowcase() {
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
               <div>
                 <h4 className='font-semibold mb-2'>Keyboard Navigation</h4>
-                <ul className='text-sm text-text-secondary space-y-1'>
+                <ul className='text-body-small text-text-secondary space-y-1'>
                   <li>• Tab/Shift+Tab for focus management</li>
                   <li>• Arrow keys for table navigation</li>
                   <li>• Enter/Space for activation</li>
@@ -375,7 +375,7 @@ export function UIShowcase() {
               </div>
               <div>
                 <h4 className='font-semibold mb-2'>Screen Reader Support</h4>
-                <ul className='text-sm text-text-secondary space-y-1'>
+                <ul className='text-body-small text-text-secondary space-y-1'>
                   <li>• ARIA labels and descriptions</li>
                   <li>• Live regions for announcements</li>
                   <li>• Semantic HTML structure</li>
@@ -384,13 +384,13 @@ export function UIShowcase() {
               </div>
             </div>
             <div className='mt-4 p-3 bg-surface rounded-lg'>
-              <p className='text-sm text-text-secondary'>
+              <p className='text-body-small text-text-secondary'>
                 <strong>Try:</strong> Press{' '}
-                <kbd className='px-2 py-1 bg-white border border-border rounded text-xs'>
+                <kbd className='px-2 py-1 bg-white border border-border rounded text-caption'>
                   Ctrl+K
                 </kbd>{' '}
                 to open command palette, or{' '}
-                <kbd className='px-2 py-1 bg-white border border-border rounded text-xs'>
+                <kbd className='px-2 py-1 bg-white border border-border rounded text-caption'>
                   Tab
                 </kbd>{' '}
                 to navigate through components.

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Upload, FileText, AlertTriangle, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 interface SelectedTicket {
   ticketNumber: string;
@@ -71,7 +72,7 @@ export function LostPledgeManagement() {
       {/* Page Header */}
       <div className='flex justify-between items-start'>
         <div>
-          <h1 className='text-2xl font-bold text-foreground mb-2'>
+          <h1 className='text-h1 font-bold text-foreground mb-2'>
             Lost Pledge Management
           </h1>
           <p className='text-muted-foreground'>
@@ -79,8 +80,8 @@ export function LostPledgeManagement() {
           </p>
         </div>
         <div className='text-right'>
-          <div className='text-sm text-muted-foreground'>Function</div>
-          <div className='text-lg font-semibold text-foreground font-mono'>FUNC-04</div>
+          <div className='text-body-small text-muted-foreground'>Function</div>
+          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-04</div>
         </div>
       </div>
 
@@ -90,7 +91,7 @@ export function LostPledgeManagement() {
         <div className='card'>
           <div className='card-header'>
             <h3 className='card-title'>Ticket Selection</h3>
-            <p className='text-sm text-muted-foreground mt-1'>
+            <p className='text-body-small text-muted-foreground mt-1'>
               Add tickets for lost pledge reporting (multiple tickets supported)
             </p>
           </div>
@@ -114,15 +115,19 @@ export function LostPledgeManagement() {
                   <div className='text-caption'>Press Enter to add ticket</div>
                 </div>
               </div>
-              <div className='flex items-end'>
-                <button 
-                  className='btn-secondary flex items-center gap-2 w-full'
+              <div className='form-group'>
+                <label className='form-label opacity-0 select-none' aria-hidden='true'>
+                  Action
+                </label>
+                <Button 
+                  variant="outline"
+                  className='flex items-center gap-2 w-full h-10'
                   onClick={handleAddTicket}
                   disabled={!ticketNumber.trim()}
                 >
                   <Plus className='h-4 w-4' />
                   Add Ticket
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -151,13 +156,15 @@ export function LostPledgeManagement() {
                         </span>
                       </td>
                       <td>
-                        <button 
-                          className='btn-tertiary flex items-center gap-2 text-sm px-3 py-1'
+                        <Button 
+                          variant="outline"
+                          size="sm"
+                          className='flex items-center gap-2'
                           onClick={() => handleRemoveTicket(ticket.id)}
                         >
                           <X className='h-4 w-4' />
                           Remove
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   ))}
@@ -171,7 +178,7 @@ export function LostPledgeManagement() {
         <div className='card'>
           <div className='card-header'>
             <h3 className='card-title'>Lost Item Details</h3>
-            <p className='text-sm text-muted-foreground mt-1'>
+            <p className='text-body-small text-muted-foreground mt-1'>
               Provide detailed description of lost items and circumstances
             </p>
           </div>
@@ -210,16 +217,17 @@ export function LostPledgeManagement() {
                       <p className='font-semibold text-foreground'>
                         {isUploading ? 'Uploading...' : 'Upload Documents'}
                       </p>
-                      <p className='text-sm text-muted-foreground'>
+                      <p className='text-body-small text-muted-foreground'>
                         Police reports, statutory declarations, or other supporting evidence
                       </p>
                     </div>
-                    <button 
-                      className='btn-tertiary text-sm'
+                    <Button 
+                      variant="outline"
+                      size="sm"
                       disabled={isUploading}
                     >
                       Browse Files
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <div className='text-caption'>
@@ -233,7 +241,7 @@ export function LostPledgeManagement() {
                   <AlertTriangle className='h-5 w-5 text-amber-600 mt-0.5' />
                   <div>
                     <h4 className='font-semibold text-amber-800 mb-1'>Documentation Requirements</h4>
-                    <ul className='text-sm text-amber-700 space-y-1'>
+                    <ul className='text-body-small text-amber-700 space-y-1'>
                       <li>• Police report for stolen items (mandatory)</li>
                       <li>• Statutory declaration for lost items (if no police report)</li>
                       <li>• Original pawn ticket or receipt (if available)</li>
@@ -250,14 +258,14 @@ export function LostPledgeManagement() {
         <div className='card'>
           <div className='card-header'>
             <h3 className='card-title'>Report Generation</h3>
-            <p className='text-sm text-muted-foreground mt-1'>
+            <p className='text-body-small text-muted-foreground mt-1'>
               Generate official lost pledge report and documentation
             </p>
           </div>
           <div className='p-6 pt-0'>
             <div className='bg-muted rounded-lg p-4 mb-6'>
               <h4 className='font-semibold text-foreground mb-3'>Report Summary</h4>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-sm'>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-body-small'>
                 <div>
                   <div className='flex justify-between mb-2'>
                     <span>Total Tickets:</span>
@@ -282,14 +290,14 @@ export function LostPledgeManagement() {
             </div>
 
             <div className='flex gap-4'>
-              <button className='btn-tertiary flex items-center gap-2'>
+              <Button variant="outline" className='flex items-center gap-2'>
                 <FileText className='h-4 w-4' />
                 Preview Report
-              </button>
-              <button className='btn-primary flex items-center gap-2'>
+              </Button>
+              <Button className='flex items-center gap-2'>
                 <FileText className='h-4 w-4' />
                 Generate Lost Pledge Report
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -297,18 +305,17 @@ export function LostPledgeManagement() {
 
       {/* Action Buttons */}
       <div className='flex gap-4 justify-end'>
-        <button className='btn-tertiary'>
+        <Button variant="outline">
           Cancel
-        </button>
-        <button className='btn-secondary'>
+        </Button>
+        <Button variant="secondary">
           Save Draft
-        </button>
-        <button 
-          className='btn-primary'
+        </Button>
+        <Button 
           disabled={selectedTickets.length === 0 || !lostDescription.trim()}
         >
           Submit Report
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ import { transactionService, ticketService, customerService } from '@/services/a
 import { useUIStore } from '@/stores/uiStore';
 import { useAuthStore } from '@/stores/authStore';
 import type { Transaction } from '@/types/business';
+import { useNavigate } from 'react-router-dom';
 
 interface DashboardStats {
   todayRenewals: number;
@@ -36,6 +37,7 @@ interface QuickAction {
   bgColor: string;
   onClick: () => void;
   keyboardShortcut?: string;
+  path: string;
 }
 
 export function Dashboard() {
@@ -50,7 +52,6 @@ export function Dashboard() {
     systemAlerts: 0,
   });
   
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [isLoading, setIsLoading] = useState(true);
   const [recentTransactions, setRecentTransactions] = useState<Transaction[]>([]);
   
@@ -58,13 +59,7 @@ export function Dashboard() {
   const { addToast } = useUIStore();
   const { } = useAuthStore(); // Removed unused staff
 
-  // Update time every minute
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000);
-    return () => clearInterval(timer);
-  }, []);
+  const navigate = useNavigate();
 
   // Fetch dashboard data on component mount
   useEffect(() => {
@@ -154,8 +149,9 @@ export function Dashboard() {
       icon: <RotateCcw className='h-6 w-6' />,
       color: 'text-primary',
       bgColor: 'bg-primary/10 border-primary/20',
-      onClick: () => console.log('Navigate to renewals'),
+      onClick: () => navigate('/transactions/renewal'),
       keyboardShortcut: 'F1',
+      path: '/transactions/renewal',
     },
     {
       id: 'redemptions',
@@ -164,8 +160,9 @@ export function Dashboard() {
       icon: <Package className='h-6 w-6' />,
       color: 'text-success',
       bgColor: 'bg-success/10 border-success/20',
-      onClick: () => console.log('Navigate to redemptions'),
+      onClick: () => navigate('/transactions/redemption'),
       keyboardShortcut: 'F2',
+      path: '/transactions/redemption',
     },
     {
       id: 'enquiry',
@@ -174,8 +171,9 @@ export function Dashboard() {
       icon: <Search className='h-6 w-6' />,
       color: 'text-brand-red',
       bgColor: 'bg-brand-red/10 border-brand-red/20',
-      onClick: () => console.log('Navigate to enquiry'),
+      onClick: () => navigate('/enquiry'),
       keyboardShortcut: 'F3',
+      path: '/enquiry',
     },
     {
       id: 'lost',
@@ -184,8 +182,9 @@ export function Dashboard() {
       icon: <AlertTriangle className='h-6 w-6' />,
       color: 'text-error',
       bgColor: 'bg-error/10 border-error/20',
-      onClick: () => console.log('Navigate to lost pledges'),
+      onClick: () => navigate('/transactions/lost-pledge'),
       keyboardShortcut: 'F4',
+      path: '/transactions/lost-pledge',
     },
     {
       id: 'combined',
@@ -194,8 +193,9 @@ export function Dashboard() {
       icon: <Calculator className='h-6 w-6' />,
       color: 'text-warning',
       bgColor: 'bg-warning/10 border-warning/20',
-      onClick: () => console.log('Navigate to combined operations'),
+      onClick: () => navigate('/transactions/combined'),
       keyboardShortcut: 'F5',
+      path: '/transactions/combined',
     },
     {
       id: 'credit',
@@ -204,8 +204,9 @@ export function Dashboard() {
       icon: <TrendingUp className='h-6 w-6' />,
       color: 'text-info',
       bgColor: 'bg-info/10 border-info/20',
-      onClick: () => console.log('Navigate to credit rating'),
+      onClick: () => navigate('/reports/credit-rating'),
       keyboardShortcut: 'F6',
+      path: '/reports/credit-rating',
     },
   ];
 
@@ -214,14 +215,6 @@ export function Dashboard() {
       style: 'currency',
       currency: 'SGD',
     }).format(amount);
-  };
-
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('en-SG', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-    });
   };
 
   return (
@@ -235,12 +228,6 @@ export function Dashboard() {
           <p className='text-text-secondary'>
             Welcome to ValueMax Vampire - Your pawnshop operations center
           </p>
-        </div>
-        <div className='text-right'>
-          <div className='text-body-small text-text-secondary'>Current Time</div>
-          <div className='text-h3 text-text-primary'>
-            {formatTime(currentTime)}
-          </div>
         </div>
       </div>
 

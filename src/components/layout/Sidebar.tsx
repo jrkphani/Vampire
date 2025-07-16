@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import {
   LayoutDashboard,
   Settings,
@@ -150,26 +150,44 @@ export function Sidebar() {
 
   return (
     <nav className="app-sidebar">
+      {/* Logo Section */}
       <div className={clsx(
-        'border-b border-border flex items-center transition-all duration-300',
+        'border-b border-border flex items-center justify-center transition-all duration-300',
         'h-[var(--header-height)]', // Match header height exactly
-        sidebarOpen ? 'px-6' : 'px-4 justify-center'
+        sidebarOpen ? 'px-4' : 'px-2'
       )}>
-        <div className='flex items-center gap-3'>
-          <div className='w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0' style={{ backgroundColor: 'var(--color-brand-red)' }}>
-            <span className='text-white font-bold text-body-small'>V</span>
-          </div>
-          {sidebarOpen && (
-            <div className='min-w-0'>
-              <div className='text-body font-bold truncate' style={{ color: 'var(--color-text-primary)' }}>
-                ValueMax
-              </div>
-              <div className='text-caption truncate' style={{ color: 'var(--color-text-secondary)' }}>
-                Vampire System
-              </div>
-            </div>
-          )}
-        </div>
+        <TooltipProvider>
+          <Link to="/dashboard" className="flex items-center gap-3 sidebar-logo-container">
+            {sidebarOpen ? (
+              /* Full Logo when expanded */
+              <img
+                src="/assets/images/valuemax-logo.png"
+                alt="ValueMax Logo"
+                className="sidebar-logo-full"
+              />
+            ) : (
+              /* Favicon when collapsed */
+              <Tooltip delayDuration={0}>
+                <TooltipTrigger asChild>
+                  <img
+                    src="/assets/images/valuemax-favicon.gif"
+                    alt="ValueMax"
+                    className="sidebar-logo-icon"
+                  />
+                </TooltipTrigger>
+                <TooltipContent
+                  side='right'
+                  className='bg-primary text-primary-foreground'
+                >
+                  <div className="text-center">
+                    <p>ValueMax</p>
+                    <p className="text-caption opacity-80">Vampire System</p>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            )}
+          </Link>
+        </TooltipProvider>
       </div>
 
       <div className="sidebar-nav">

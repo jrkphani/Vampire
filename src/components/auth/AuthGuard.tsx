@@ -5,6 +5,7 @@ import { useUIStore } from '@/stores/uiStore';
 import { authService } from '@/services/api';
 import { Login } from '@/pages/auth/Login';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/Card';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -147,8 +148,8 @@ export function AuthGuard({ children, requiredPermission }: AuthGuardProps) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="max-w-md w-full">
-          <div className="card bg-destructive/5 border-destructive/20">
-            <div className="p-6 text-center">
+          <Card className="bg-destructive/5 border-destructive/20">
+            <CardContent className="p-6 text-center">
               <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
               <h2 className="text-h2 font-semibold text-foreground mb-2">
                 Access Denied
@@ -162,8 +163,8 @@ export function AuthGuard({ children, requiredPermission }: AuthGuardProps) {
               >
                 Sign Out
               </Button>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     );

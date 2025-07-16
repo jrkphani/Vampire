@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Plus, Upload, FileText, AlertTriangle, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { PageHeader } from '@/components/layout/PageHeader';
 
 interface SelectedTicket {
   ticketNumber: string;
@@ -70,45 +73,38 @@ export function LostPledgeManagement() {
   return (
     <div className='space-y-6'>
       {/* Page Header */}
-      <div className='flex justify-between items-start'>
-        <div>
-          <h1 className='text-h1 font-bold text-foreground mb-2'>
-            Lost Pledge Management
-          </h1>
-          <p className='text-muted-foreground'>
-            Report lost pledges with detailed documentation and supporting evidence
-          </p>
-        </div>
-        <div className='text-right'>
-          <div className='text-body-small text-muted-foreground'>Function</div>
-          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-04</div>
-        </div>
-      </div>
+      <PageHeader 
+        title="Lost Pledge Management"
+        description="Report lost pledges with detailed documentation and supporting evidence"
+      />
 
       {/* Main Layout - Single Column with Cards */}
       <div className='space-y-6'>
         {/* Ticket Selection Section */}
-        <div className='card'>
-          <div className='card-header'>
-            <h3 className='card-title'>Ticket Selection</h3>
+        <Card>
+          <CardHeader>
+            <CardTitle>Ticket Selection</CardTitle>
             <p className='text-body-small text-muted-foreground mt-1'>
               Add tickets for lost pledge reporting (multiple tickets supported)
             </p>
-          </div>
-          <div className='p-6 pt-0'>
+          </CardHeader>
+          <CardContent>
             <div className='grid grid-cols-1 md:grid-cols-4 gap-4 mb-6'>
               <div className='md:col-span-3'>
                 <div className='form-group'>
                   <label className='form-label required' htmlFor='ticket-number'>
                     Ticket Number
                   </label>
-                  <input
+                  <Input
                     id='ticket-number'
                     className='input-field text-mono'
                     type='text'
                     placeholder='B/MMYY/XXXX or S/MMYY/XXXX'
                     value={ticketNumber}
-                    onChange={(e) => setTicketNumber(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                      const value = typeof e === 'string' ? e : e.target.value;
+                      setTicketNumber(value);
+                    }}
                     onKeyPress={handleTicketKeyPress}
                     required
                   />
@@ -171,18 +167,18 @@ export function LostPledgeManagement() {
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Lost Item Details Section */}
-        <div className='card'>
-          <div className='card-header'>
-            <h3 className='card-title'>Lost Item Details</h3>
+        <Card>
+          <CardHeader>
+            <CardTitle>Lost Item Details</CardTitle>
             <p className='text-body-small text-muted-foreground mt-1'>
               Provide detailed description of lost items and circumstances
             </p>
-          </div>
-          <div className='p-6 pt-0'>
+          </CardHeader>
+          <CardContent>
             <div className='space-y-6'>
               <div className='form-group'>
                 <label className='form-label required' htmlFor='lost-description'>
@@ -251,18 +247,18 @@ export function LostPledgeManagement() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Report Generation Section */}
-        <div className='card'>
-          <div className='card-header'>
-            <h3 className='card-title'>Report Generation</h3>
+        <Card>
+          <CardHeader>
+            <CardTitle>Report Generation</CardTitle>
             <p className='text-body-small text-muted-foreground mt-1'>
               Generate official lost pledge report and documentation
             </p>
-          </div>
-          <div className='p-6 pt-0'>
+          </CardHeader>
+          <CardContent>
             <div className='bg-muted rounded-lg p-4 mb-6'>
               <h4 className='font-semibold text-foreground mb-3'>Report Summary</h4>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-body-small'>
@@ -299,8 +295,8 @@ export function LostPledgeManagement() {
                 Generate Lost Pledge Report
               </Button>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Action Buttons */}

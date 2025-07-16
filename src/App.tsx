@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
+import { BackendConfigurationCheck } from '@/components/system/BackendConfigurationCheck';
 import { HeroPage } from '@/pages/HeroPage';
 import { MockLogin } from '@/pages/auth/MockLogin';
 import { Login } from '@/pages/auth/Login';
@@ -33,63 +34,65 @@ const queryClient = new QueryClient({
 export function App() {
   return (
     <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <Router
-          future={{
-            v7_startTransition: true,
-            v7_relativeSplatPath: true,
-          }}
-        >
-          <Routes>
-            {/* Public Routes */}
-            <Route path='/' element={<HeroPage />} />
-            <Route path='/login' element={<MockLogin />} />
-            <Route path='/login-form' element={<Login />} />
-            <Route path='/logout' element={<Logout />} />
-            
-            {/* Protected Routes */}
-            <Route path='/*' element={
-              <ProtectedRoute>
-                <AppLayout>
-                  <Routes>
-                    <Route path='/dashboard' element={<Dashboard />} />
-                    <Route path='/transactions/renewal' element={<TicketRenewal />} />
-                    <Route
-                      path='/transactions/redemption'
-                      element={<TicketRedemption />}
-                    />
-                    <Route
-                      path='/transactions/lost-pledge'
-                      element={<LostPledgeManagement />}
-                    />
-                    <Route
-                      path='/transactions/combined'
-                      element={<CombinedOperations />}
-                    />
-                    <Route
-                      path='/reports/lost-letter'
-                      element={<LostLetterReprinting />}
-                    />
-                    <Route
-                      path='/reports/credit-rating'
-                      element={<CreditRatingAssessment />}
-                    />
-                    <Route
-                      path='/reports/credit-rating/:id'
-                      element={<CreditRatingDetail />}
-                    />
-                    <Route path='/enquiry' element={<CustomerEnquiry />} />
-                    <Route path='/settings' element={<SystemSettings />} />
-                    <Route path='/help' element={<HelpSupport />} />
-                    <Route path='*' element={<div>Page not found</div>} />
-                  </Routes>
-                </AppLayout>
-              </ProtectedRoute>
-            } />
-          </Routes>
-        </Router>
-      </QueryClientProvider>
-      <Toaster />
+      <BackendConfigurationCheck>
+        <QueryClientProvider client={queryClient}>
+          <Router
+            future={{
+              v7_startTransition: true,
+              v7_relativeSplatPath: true,
+            }}
+          >
+            <Routes>
+              {/* Public Routes */}
+              <Route path='/' element={<HeroPage />} />
+              <Route path='/login' element={<MockLogin />} />
+              <Route path='/login-form' element={<Login />} />
+              <Route path='/logout' element={<Logout />} />
+              
+              {/* Protected Routes */}
+              <Route path='/*' element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Routes>
+                      <Route path='/dashboard' element={<Dashboard />} />
+                      <Route path='/transactions/renewal' element={<TicketRenewal />} />
+                      <Route
+                        path='/transactions/redemption'
+                        element={<TicketRedemption />}
+                      />
+                      <Route
+                        path='/transactions/lost-pledge'
+                        element={<LostPledgeManagement />}
+                      />
+                      <Route
+                        path='/transactions/combined'
+                        element={<CombinedOperations />}
+                      />
+                      <Route
+                        path='/reports/lost-letter'
+                        element={<LostLetterReprinting />}
+                      />
+                      <Route
+                        path='/reports/credit-rating'
+                        element={<CreditRatingAssessment />}
+                      />
+                      <Route
+                        path='/reports/credit-rating/:id'
+                        element={<CreditRatingDetail />}
+                      />
+                      <Route path='/enquiry' element={<CustomerEnquiry />} />
+                      <Route path='/settings' element={<SystemSettings />} />
+                      <Route path='/help' element={<HelpSupport />} />
+                      <Route path='*' element={<div>Page not found</div>} />
+                    </Routes>
+                  </AppLayout>
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </Router>
+        </QueryClientProvider>
+        <Toaster />
+      </BackendConfigurationCheck>
     </ErrorBoundary>
   );
 }

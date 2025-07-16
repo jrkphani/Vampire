@@ -17,12 +17,17 @@ const Input = React.forwardRef<HTMLInputElement, CustomInputProps>(
     // Handle multiple onChange patterns: string handler, event handler, or setState
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
-        if (onChange.length === 1) {
-          // Custom onChange that expects a string value OR setState function
-          (onChange as (value: string) => void)(e.target.value);
-        } else {
-          // Standard onChange that expects an event
+        // Check if this input is from React Hook Form (has name prop from register)
+        // or if the onChange function signature suggests it expects an event
+        const hasNameProp = 'name' in props && props.name;
+        const isEventHandler = hasNameProp || onChange.length !== 1;
+        
+        if (isEventHandler) {
+          // Standard onChange that expects an event (React Hook Form, explicit event handlers)
           (onChange as React.ChangeEventHandler<HTMLInputElement>)(e);
+        } else {
+          // Custom onChange that expects a string value (setState functions, custom handlers)
+          (onChange as (value: string) => void)(e.target.value);
         }
       }
     };

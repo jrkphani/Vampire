@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 
 interface DashboardCardProps {
   title: string;
@@ -22,14 +23,14 @@ export function DashboardCard({
   children 
 }: DashboardCardProps) {
   return (
-    <div className={cn('card card-hover', className)}>
-      <div className="card-header">
-        <h3 className="card-title flex items-center justify-between">
+    <Card className={cn('hover:shadow-lg transition-all cursor-pointer hover:scale-105', className)}>
+      <CardHeader>
+        <CardTitle className="flex items-center justify-between">
           <span>{title}</span>
           {icon && <div className="text-muted-foreground">{icon}</div>}
-        </h3>
-      </div>
-      <div className="card-content p-6 pt-0">
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="pt-0">
         <div className="text-h1 font-bold text-foreground mb-2">
           {value}
         </div>
@@ -43,7 +44,7 @@ export function DashboardCard({
           </div>
         )}
         {children}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

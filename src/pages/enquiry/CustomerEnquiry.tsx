@@ -3,6 +3,8 @@ import { Search, Eye } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { PageHeader } from '@/components/layout/PageHeader';
 
 interface CustomerResult {
   nric: string;
@@ -99,6 +101,12 @@ export function CustomerEnquiry() {
     }
   };
 
+  const handleViewCustomer = (customerId: string) => {
+    console.log('View customer details for ID:', customerId);
+    // In a real app, you would navigate here:
+    // navigate(`/customers/${customerId}`);
+  };
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-SG', {
       style: 'currency',
@@ -132,20 +140,10 @@ export function CustomerEnquiry() {
   return (
     <div className='space-y-6'>
       {/* Page Header */}
-      <div className='flex justify-between items-start'>
-        <div>
-          <h1 className='text-h1 font-bold text-foreground mb-2'>
-            Universal Enquiry
-          </h1>
-          <p className='text-muted-foreground'>
-            Search customers, tickets, and transactions across the entire system
-          </p>
-        </div>
-        <div className='text-right'>
-          <div className='text-body-small text-muted-foreground'>Function</div>
-          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-03</div>
-        </div>
-      </div>
+      <PageHeader 
+        title="Universal Enquiry"
+        description="Search customers, tickets, and transactions across the entire system"
+      />
 
       {/* Universal Search Bar */}
       <div className='search-container'>
@@ -159,7 +157,10 @@ export function CustomerEnquiry() {
               type='text'
               placeholder='Search by NRIC, Ticket Number, Phone, or Name...'
               value={searchQuery}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                const value = typeof e === 'string' ? e : e.target.value;
+                setSearchQuery(value);
+              }}
               onKeyPress={handleSearchKeyPress}
             />
             {isSearching && (
@@ -174,14 +175,14 @@ export function CustomerEnquiry() {
       {/* Search Results Display Area */}
       <div className='grid grid-cols-1 gap-6'>
         {/* Customer Results Table */}
-        <div className='card'>
-          <div className='card-header'>
-            <h3 className='card-title'>Customer Results</h3>
+        <Card>
+          <CardHeader>
+            <CardTitle>Customer Results</CardTitle>
             <p className='text-body-small text-muted-foreground mt-1'>
               {customerResults.length} customers found
             </p>
-          </div>
-          <div className='p-6 pt-0'>
+          </CardHeader>
+          <CardContent className='pt-0'>
             <table className='data-table'>
               <thead>
                 <tr>
@@ -198,7 +199,12 @@ export function CustomerEnquiry() {
                     <td>{customer.name}</td>
                     <td>{customer.phone}</td>
                     <td>
-                      <Button variant="outline" size="sm" className='flex items-center gap-2'>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className='flex items-center gap-2'
+                        onClick={() => handleViewCustomer(customer.id)}
+                      >
                         <Eye className='h-4 w-4' />
                         View
                       </Button>
@@ -207,18 +213,18 @@ export function CustomerEnquiry() {
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Ticket Results Table */}
-        <div className='card'>
-          <div className='card-header'>
-            <h3 className='card-title'>Ticket Results</h3>
+        <Card>
+          <CardHeader>
+            <CardTitle>Ticket Results</CardTitle>
             <p className='text-body-small text-muted-foreground mt-1'>
               {ticketResults.length} tickets found
             </p>
-          </div>
-          <div className='p-6 pt-0'>
+          </CardHeader>
+          <CardContent className='pt-0'>
             <table className='data-table'>
               <thead>
                 <tr>
@@ -245,13 +251,13 @@ export function CustomerEnquiry() {
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Search Tips */}
-      <div className='card bg-muted/30'>
-        <div className='p-4'>
+      <Card className='bg-muted/30'>
+        <CardContent className='p-4'>
           <h4 className='font-semibold text-foreground mb-2'>Search Tips</h4>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-body-small text-muted-foreground'>
             <div>
@@ -267,8 +273,8 @@ export function CustomerEnquiry() {
               <strong>Name:</strong> Partial name matching supported
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

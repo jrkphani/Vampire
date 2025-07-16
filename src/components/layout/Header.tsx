@@ -14,6 +14,7 @@ import {
 import { Kbd } from '@/components/ui/kbd';
 import { useBreadcrumbs, getFunctionCode } from '@/lib/breadcrumbs';
 import { Link } from 'react-router-dom';
+import { GlobalDateTimeLocation } from '@/components/system/GlobalDateTimeLocation';
 
 interface HeaderProps {
   title?: string | undefined;
@@ -79,8 +80,8 @@ export function Header({ title, actions }: HeaderProps) {
         </Button>
       </div>
 
-      {/* Right Section: Actions and User Menu */}
-      <div className='flex items-center gap-2'>
+      {/* Right Section: Actions, User Menu, and Global Date/Time/Location */}
+      <div className='flex items-center gap-4'>
         {/* Contextual Actions */}
         {actions}
 
@@ -120,6 +121,9 @@ export function Header({ title, actions }: HeaderProps) {
             <LogOut className='h-4 w-4' />
           </Button>
         </div>
+
+        {/* Global Date/Time/Location */}
+        <GlobalDateTimeLocation />
       </div>
     </header>
   );

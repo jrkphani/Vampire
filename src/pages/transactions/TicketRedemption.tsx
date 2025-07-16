@@ -281,19 +281,13 @@ export function TicketRedemption() {
   return (
     <div className='space-y-6'>
       {/* Page Header */}
-      <div className='flex justify-between items-start'>
-        <div>
-          <h1 className='text-h1 font-bold text-foreground mb-2'>
-            Ticket Redemptions
-          </h1>
-          <p className='text-muted-foreground'>
-            Process ticket redemptions with redeemer validation and dual staff authentication
-          </p>
-        </div>
-        <div className='text-right'>
-          <div className='text-body-small text-muted-foreground'>Function</div>
-          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-02</div>
-        </div>
+      <div>
+        <h1 className='text-h1 font-bold text-foreground mb-2'>
+          Ticket Redemptions
+        </h1>
+        <p className='text-muted-foreground'>
+          Process ticket redemptions with redeemer validation and dual staff authentication
+        </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit as any)} className='space-y-6'>
@@ -349,11 +343,14 @@ export function TicketRedemption() {
                     )}
                     <div className='text-caption'>Press Enter to lookup</div>
                   </div>
-                  <div className='flex items-end'>
+                  <div className='form-group'>
+                    <label className='form-label opacity-0 select-none' aria-hidden='true'>
+                      Action
+                    </label>
                     <Button 
                       type='button'
-                      variant='secondary'
-                      className='flex items-center gap-2 w-full'
+                      variant='outline'
+                      className='flex items-center gap-2 w-full h-10'
                       onClick={handleTicketLookup}
                       disabled={isLookingUp || !watch('ticketNumber')}
                     >

@@ -3,7 +3,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Settings, User, Shield, Bell, Database, Keyboard, Save, RotateCcw, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/Input';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { 
   systemSettingsSchema, 
   type SystemSettingsFormData,
@@ -188,14 +191,14 @@ export function SystemSettings() {
         return (
           <div className='space-y-6'>
             {/* Appearance Settings */}
-            <div className='card'>
-              <div className='card-header'>
-                <h3 className='card-title'>Appearance</h3>
+            <Card>
+              <CardHeader>
+                <CardTitle>Appearance</CardTitle>
                 <p className='text-body-small text-muted-foreground mt-1'>
                   Customize the visual appearance of the application
                 </p>
-              </div>
-              <div className='p-6 pt-0'>
+              </CardHeader>
+              <CardContent>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                   <div className='form-group'>
                     <label className='form-label' htmlFor='theme'>
@@ -237,18 +240,18 @@ export function SystemSettings() {
                     <div className='text-caption'>Select your preferred language</div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Regional Settings */}
-            <div className='card'>
-              <div className='card-header'>
-                <h3 className='card-title'>Regional Settings</h3>
+            <Card>
+              <CardHeader>
+                <CardTitle>Regional Settings</CardTitle>
                 <p className='text-body-small text-muted-foreground mt-1'>
                   Configure date, time, and currency display formats
                 </p>
-              </div>
-              <div className='p-6 pt-0'>
+              </CardHeader>
+              <CardContent>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                   <div className='form-group'>
                     <label className='form-label' htmlFor='date-format'>
@@ -289,21 +292,21 @@ export function SystemSettings() {
                     <div className='text-caption'>Choose how currency amounts are displayed</div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Keyboard Shortcuts */}
-            <div className='card'>
-              <div className='card-header'>
-                <h3 className='card-title flex items-center gap-2'>
+            <Card>
+              <CardHeader>
+                <CardTitle className='flex items-center gap-2'>
                   <Keyboard className='h-5 w-5' />
                   Keyboard Shortcuts
-                </h3>
+                </CardTitle>
                 <p className='text-body-small text-muted-foreground mt-1'>
                   System-wide keyboard shortcuts for efficient navigation
                 </p>
-              </div>
-              <div className='p-6 pt-0'>
+              </CardHeader>
+              <CardContent>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                   {keyboardShortcuts.map((shortcut, index) => (
                     <div key={index} className='flex justify-between items-center py-2 border-b border-muted/30 last:border-b-0'>
@@ -314,8 +317,8 @@ export function SystemSettings() {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         );
 
@@ -323,14 +326,14 @@ export function SystemSettings() {
         return (
           <div className='space-y-6'>
             {/* Security Settings */}
-            <div className='card'>
-              <div className='card-header'>
-                <h3 className='card-title'>Security Settings</h3>
+            <Card>
+              <CardHeader>
+                <CardTitle>Security Settings</CardTitle>
                 <p className='text-body-small text-muted-foreground mt-1'>
                   Configure authentication and security policies
                 </p>
-              </div>
-              <div className='p-6 pt-0'>
+              </CardHeader>
+              <CardContent>
                 <div className='space-y-6'>
                   <div className='flex items-center justify-between'>
                     <div>
@@ -340,14 +343,12 @@ export function SystemSettings() {
                       </div>
                     </div>
                     <div className='flex items-center'>
-                      <input
-                        type='checkbox'
+                      <Checkbox
                         id='dual-staff-auth'
-                        className='h-4 w-4 text-brand-red focus:ring-brand-red border-gray-300 rounded'
                         checked={systemConfig.dualStaffAuth}
-                        onChange={(e) => setSystemConfig({
+                        onCheckedChange={(checked) => setSystemConfig({
                           ...systemConfig,
-                          dualStaffAuth: e.target.checked
+                          dualStaffAuth: Boolean(checked)
                         })}
                       />
                       <label htmlFor='dual-staff-auth' className='ml-2 text-body-small'>
@@ -361,51 +362,57 @@ export function SystemSettings() {
                       <label className='form-label' htmlFor='max-login-attempts'>
                         Maximum Login Attempts
                       </label>
-                      <input
+                      <Input
                         id='max-login-attempts'
                         className='input-field'
                         type='number'
                         min='1'
                         max='10'
                         value={systemConfig.maxLoginAttempts}
-                        onChange={(e) => setSystemConfig({
-                          ...systemConfig,
-                          maxLoginAttempts: parseInt(e.target.value) || 3
-                        })}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                          const value = typeof e === 'string' ? e : e.target.value;
+                          setSystemConfig({
+                            ...systemConfig,
+                            maxLoginAttempts: parseInt(value) || 3
+                          });
+                        }}
                       />
                       <div className='text-caption'>Lock account after failed attempts</div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Session Management */}
-            <div className='card'>
-              <div className='card-header'>
-                <h3 className='card-title'>Session Management</h3>
+            <Card>
+              <CardHeader>
+                <CardTitle>Session Management</CardTitle>
                 <p className='text-body-small text-muted-foreground mt-1'>
                   Configure session timeouts and automatic logout behavior
                 </p>
-              </div>
-              <div className='p-6 pt-0'>
+              </CardHeader>
+              <CardContent>
                 <div className='space-y-6'>
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                     <div className='form-group'>
                       <label className='form-label' htmlFor='session-timeout'>
                         Session Timeout (minutes)
                       </label>
-                      <input
+                      <Input
                         id='session-timeout'
                         className='input-field'
                         type='number'
                         min='5'
                         max='120'
                         value={systemConfig.sessionTimeout}
-                        onChange={(e) => setSystemConfig({
-                          ...systemConfig,
-                          sessionTimeout: parseInt(e.target.value) || 30
-                        })}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                          const value = typeof e === 'string' ? e : e.target.value;
+                          setSystemConfig({
+                            ...systemConfig,
+                            sessionTimeout: parseInt(value) || 30
+                          });
+                        }}
                       />
                       <div className='text-caption'>Warn user before session expires</div>
                     </div>
@@ -413,34 +420,37 @@ export function SystemSettings() {
                       <label className='form-label' htmlFor='auto-logout-time'>
                         Auto Logout Time (minutes)
                       </label>
-                      <input
+                      <Input
                         id='auto-logout-time'
                         className='input-field'
                         type='number'
                         min='10'
                         max='240'
                         value={systemConfig.autoLogoutTime}
-                        onChange={(e) => setSystemConfig({
-                          ...systemConfig,
-                          autoLogoutTime: parseInt(e.target.value) || 60
-                        })}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                          const value = typeof e === 'string' ? e : e.target.value;
+                          setSystemConfig({
+                            ...systemConfig,
+                            autoLogoutTime: parseInt(value) || 60
+                          });
+                        }}
                       />
                       <div className='text-caption'>Automatically logout after inactivity</div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Data Management */}
-            <div className='card'>
-              <div className='card-header'>
-                <h3 className='card-title'>Data Management</h3>
+            <Card>
+              <CardHeader>
+                <CardTitle>Data Management</CardTitle>
                 <p className='text-body-small text-muted-foreground mt-1'>
                   Configure automatic data saving and backup settings
                 </p>
-              </div>
-              <div className='p-6 pt-0'>
+              </CardHeader>
+              <CardContent>
                 <div className='flex items-center justify-between'>
                   <div>
                     <label className='form-label'>Auto-save Drafts</label>
@@ -449,14 +459,12 @@ export function SystemSettings() {
                     </div>
                   </div>
                   <div className='flex items-center'>
-                    <input
-                      type='checkbox'
+                    <Checkbox
                       id='auto-save-drafts'
-                      className='h-4 w-4 text-brand-red focus:ring-brand-red border-gray-300 rounded'
                       checked={systemConfig.autoSaveDrafts}
-                      onChange={(e) => setSystemConfig({
+                      onCheckedChange={(checked) => setSystemConfig({
                         ...systemConfig,
-                        autoSaveDrafts: e.target.checked
+                        autoSaveDrafts: Boolean(checked)
                       })}
                     />
                     <label htmlFor='auto-save-drafts' className='ml-2 text-body-small'>
@@ -464,21 +472,21 @@ export function SystemSettings() {
                     </label>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         );
 
       case 'notifications':
         return (
-          <div className='card'>
-            <div className='card-header'>
-              <h3 className='card-title flex items-center gap-2'>
+          <Card>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-2'>
                 <Bell className='h-5 w-5' />
                 Notification Settings
-              </h3>
-            </div>
-            <div className='p-6 pt-0'>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className='bg-muted/30 p-6 rounded-lg text-center'>
                 <Bell className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
                 <p className='text-muted-foreground'>Notification settings will be configured here</p>
@@ -486,20 +494,20 @@ export function SystemSettings() {
                   Email alerts, system notifications, and reminder preferences
                 </p>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         );
 
       case 'privacy':
         return (
-          <div className='card'>
-            <div className='card-header'>
-              <h3 className='card-title flex items-center gap-2'>
+          <Card>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-2'>
                 <Database className='h-5 w-5' />
                 Data & Privacy Settings
-              </h3>
-            </div>
-            <div className='p-6 pt-0'>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className='bg-muted/30 p-6 rounded-lg text-center'>
                 <Shield className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
                 <p className='text-muted-foreground'>Data and privacy settings will be configured here</p>
@@ -507,8 +515,8 @@ export function SystemSettings() {
                   Data retention policies, privacy controls, and compliance settings
                 </p>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         );
 
       default:
@@ -549,7 +557,7 @@ export function SystemSettings() {
       </div>
 
       {/* Tab Navigation */}
-      <div className='card'>
+      <Card>
         <div className='border-b'>
           <nav className='flex space-x-8 px-6' aria-label='Settings tabs'>
             {tabs.map((tab) => (
@@ -569,7 +577,7 @@ export function SystemSettings() {
             ))}
           </nav>
         </div>
-      </div>
+      </Card>
 
       {/* Tab Content */}
       <div>
@@ -585,8 +593,8 @@ export function SystemSettings() {
       )}
 
       {/* Help Notice */}
-      <div className='card bg-blue-50'>
-        <div className='p-4'>
+      <Card className='bg-blue-50'>
+        <CardContent className='p-4'>
           <h4 className='font-semibold text-blue-800 mb-2'>Settings Information</h4>
           <div className='text-body-small text-blue-700 space-y-1'>
             <p>• Changes to settings are applied immediately after saving</p>
@@ -594,8 +602,8 @@ export function SystemSettings() {
             <p>• Default settings can be restored using the "Reset to Defaults" button</p>
             <p>• Contact your system administrator for advanced configuration options</p>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

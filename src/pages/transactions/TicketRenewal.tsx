@@ -36,6 +36,7 @@ import { Input } from '@/components/ui/Input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card-actual';
+import { PageHeader } from '@/components/layout/PageHeader';
 import { 
   ticketRenewalSchema, 
   type TicketRenewalFormData,
@@ -343,20 +344,10 @@ export function TicketRenewal() {
   return (
     <div className='space-y-6'>
       {/* Page Header */}
-      <div className='flex justify-between items-start'>
-        <div>
-          <h1 className='text-h1 font-bold text-foreground mb-2'>
-            Ticket Renewals
-          </h1>
-          <p className='text-muted-foreground'>
-            Process single or multiple ticket renewals with payment processing
-          </p>
-        </div>
-        <div className='text-right'>
-          <div className='text-body-small text-muted-foreground'>Function</div>
-          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-01</div>
-        </div>
-      </div>
+      <PageHeader 
+        title="Ticket Renewals"
+        description="Process single or multiple ticket renewals with payment processing"
+      />
 
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
         {/* Main Layout - Two Column Grid */}

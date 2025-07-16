@@ -17,6 +17,14 @@ const generateTicketNo = () => {
   return `B/${month}${year}/${sequence}`;
 };
 
+// Generate today's date in ISO format for consistent mock data
+const getTodayISO = () => new Date().toISOString();
+const getYesterdayISO = () => {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  return yesterday.toISOString();
+};
+
 const generateCustomerId = () => {
   return `CUST${Math.floor(Math.random() * 9999)
     .toString()
@@ -255,6 +263,42 @@ const mockTickets: TicketData[] = [
     createdAt: '2024-03-25T11:45:00Z',
     updatedAt: '2024-06-25T16:30:00Z',
   },
+  {
+    ticketNo: 'B/0124/0089',
+    pledgeNo: 'PL000089',
+    customerId: 'CUST003',
+    customer: {
+      id: 'CUST003',
+      nric: 'S3456789C',
+      name: 'David Wong Kah Wai',
+      contact: '93456789',
+    },
+    pledge: {
+      pledgeNo: 'PL000089',
+      weight: '12.0g',
+      description: 'Gold bracelet',
+      scrambledNo: 'SCR089',
+      pledgeCode: 'PC089',
+      stCode: 'ST089',
+      pCode: 'P089',
+    },
+    financial: {
+      principal: 500,
+      interest: 45,
+      months: 3,
+      newAmount: 545,
+      outstandings: 0,
+      interestRate: 3.0,
+    },
+    dates: {
+      pawnDate: '2024-01-08',
+      expiryDate: '2024-04-08',
+      maturityDate: '2024-07-08',
+    },
+    status: TicketStatus.R,
+    createdAt: '2024-01-08T10:00:00Z',
+    updatedAt: '2024-04-08T14:30:00Z',
+  },
 ];
 
 // Mock transactions data
@@ -265,9 +309,9 @@ const mockTransactions: Transaction[] = [
     ticketNo: 'B/0725/1234',
     customerId: 'CUST001',
     staffId: '1',
-    transactionDate: '2025-07-15T10:30:00Z',
+    transactionDate: getTodayISO().split('T')[0] + 'T10:30:00Z',
     status: 'completed',
-    createdAt: '2025-07-15T10:30:00Z',
+    createdAt: getTodayISO().split('T')[0] + 'T10:30:00Z',
     payment: {
       cashAmount: 24,
       digitalAmount: 0,
@@ -282,9 +326,9 @@ const mockTransactions: Transaction[] = [
     ticketNo: 'B/0625/0998',
     customerId: 'CUST003',
     staffId: '2',
-    transactionDate: '2025-07-15T09:15:00Z',
+    transactionDate: getTodayISO().split('T')[0] + 'T09:15:00Z',
     status: 'completed',
-    createdAt: '2025-07-15T09:15:00Z',
+    createdAt: getTodayISO().split('T')[0] + 'T09:15:00Z',
     payment: {
       cashAmount: 1200,
       digitalAmount: 108,
@@ -299,9 +343,9 @@ const mockTransactions: Transaction[] = [
     ticketNo: 'B/0725/1235',
     customerId: 'CUST002',
     staffId: '3',
-    transactionDate: '2025-07-15T08:45:00Z',
+    transactionDate: getTodayISO().split('T')[0] + 'T08:45:00Z',
     status: 'completed',
-    createdAt: '2025-07-15T08:45:00Z',
+    createdAt: getTodayISO().split('T')[0] + 'T08:45:00Z',
     payment: {
       cashAmount: 13.5,
       digitalAmount: 0,
@@ -316,9 +360,9 @@ const mockTransactions: Transaction[] = [
     ticketNo: 'B/0625/0777',
     customerId: 'CUST001',
     staffId: '1',
-    transactionDate: '2025-07-14T16:20:00Z',
+    transactionDate: getYesterdayISO().split('T')[0] + 'T16:20:00Z',
     status: 'completed',
-    createdAt: '2025-07-14T16:20:00Z',
+    createdAt: getYesterdayISO().split('T')[0] + 'T16:20:00Z',
     payment: {
       cashAmount: 50,
       digitalAmount: 0,
@@ -333,9 +377,9 @@ const mockTransactions: Transaction[] = [
     ticketNo: 'B/0624/0555',
     customerId: 'CUST002',
     staffId: '2',
-    transactionDate: '2025-07-14T14:10:00Z',
+    transactionDate: getYesterdayISO().split('T')[0] + 'T14:10:00Z',
     status: 'completed',
-    createdAt: '2025-07-14T14:10:00Z',
+    createdAt: getYesterdayISO().split('T')[0] + 'T14:10:00Z',
     payment: {
       cashAmount: 28,
       digitalAmount: 0,
@@ -350,9 +394,9 @@ const mockTransactions: Transaction[] = [
     ticketNo: 'B/0524/0333',
     customerId: 'CUST003',
     staffId: '3',
-    transactionDate: '2025-07-14T11:30:00Z',
+    transactionDate: getYesterdayISO().split('T')[0] + 'T11:30:00Z',
     status: 'completed',
-    createdAt: '2025-07-14T11:30:00Z',
+    createdAt: getYesterdayISO().split('T')[0] + 'T11:30:00Z',
     payment: {
       cashAmount: 850,
       digitalAmount: 65,

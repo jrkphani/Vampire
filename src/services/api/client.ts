@@ -57,6 +57,13 @@ const DEFAULT_CONFIG: ApiClientConfig = {
   },
 };
 
+// Check for production misconfiguration
+if (!import.meta.env.DEV && !import.meta.env.VITE_API_BASE_URL) {
+  console.error('🚨 PRODUCTION MISCONFIGURATION DETECTED');
+  console.error('API calls will fail because no backend URL is configured');
+  console.error('Set VITE_API_BASE_URL in your Amplify environment variables');
+}
+
 // Circuit breaker implementation
 class CircuitBreaker {
   private state: CircuitBreakerState = {

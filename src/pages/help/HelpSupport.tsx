@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Search, BookOpen, Keyboard, AlertCircle, FileText, MessageCircle, ChevronDown, ChevronRight, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 
 interface FAQItem {
   id: string;
@@ -154,12 +156,15 @@ export function HelpSupport() {
             <div className='search-icon'>
               <Search className={cn('h-5 w-5 text-muted-foreground', isSearching && 'animate-pulse')} />
             </div>
-            <input
+            <Input
               className='search-input'
               type='text'
               placeholder='Search help articles, FAQs, or keywords...'
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                const value = typeof e === 'string' ? e : e.target.value;
+                setSearchQuery(value);
+              }}
               onKeyPress={handleSearchKeyPress}
             />
             {isSearching && (
@@ -174,19 +179,19 @@ export function HelpSupport() {
       {/* Quick Access Cards */}
       <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
         {quickAccessCards.map((card, index) => (
-          <div key={index} className='card card-hover cursor-pointer'>
-            <div className='card-header'>
-              <h3 className='card-title flex items-center gap-2'>
+          <Card key={index} className='hover:shadow-lg transition-all cursor-pointer hover:scale-105'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-2'>
                 <div className='p-2 bg-primary/10 rounded-lg text-primary'>
                   {card.icon}
                 </div>
                 {card.title}
-              </h3>
+              </CardTitle>
               <p className='text-body-small text-muted-foreground mt-1'>
                 {card.description}
               </p>
-            </div>
-            <div className='p-6 pt-0'>
+            </CardHeader>
+            <CardContent className='pt-0'>
               <ul className='space-y-2'>
                 {card.items.map((item, itemIndex) => (
                   <li key={itemIndex} className='text-body-small text-muted-foreground flex items-start gap-2'>
@@ -201,23 +206,23 @@ export function HelpSupport() {
                   <ExternalLink className='h-3 w-3' />
                 </button>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
       {/* FAQ Section */}
-      <div className='card'>
-        <div className='card-header'>
-          <h3 className='card-title'>Frequently Asked Questions</h3>
+      <Card>
+        <CardHeader>
+          <CardTitle>Frequently Asked Questions</CardTitle>
           <p className='text-body-small text-muted-foreground mt-1'>
             {searchQuery.trim() 
               ? `Showing ${filteredFAQs.length} results for "${searchQuery}"`
               : `${faqItems.length} common questions and answers`
             }
           </p>
-        </div>
-        <div className='p-6 pt-0'>
+        </CardHeader>
+        <CardContent className='pt-0'>
           <div className='space-y-4'>
             {filteredFAQs.map((faq) => (
               <div key={faq.id} className='border border-muted/30 rounded-lg'>
@@ -261,21 +266,21 @@ export function HelpSupport() {
               </p>
             </div>
           )}
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Feature Documentation Section */}
-      <div className='card'>
-        <div className='card-header'>
-          <h3 className='card-title flex items-center gap-2'>
+      <Card>
+        <CardHeader>
+          <CardTitle className='flex items-center gap-2'>
             <FileText className='h-5 w-5' />
             Feature Documentation
-          </h3>
+          </CardTitle>
           <p className='text-body-small text-muted-foreground mt-1'>
             Comprehensive guides for all system features and functions
           </p>
-        </div>
-        <div className='p-6 pt-0'>
+        </CardHeader>
+        <CardContent className='pt-0'>
           <div className='bg-muted/30 p-6 rounded-lg text-center'>
             <FileText className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
             <p className='text-muted-foreground'>Detailed feature guides will be listed here</p>
@@ -288,21 +293,21 @@ export function HelpSupport() {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Contact & Support Section */}
-      <div className='card'>
-        <div className='card-header'>
-          <h3 className='card-title flex items-center gap-2'>
+      <Card>
+        <CardHeader>
+          <CardTitle className='flex items-center gap-2'>
             <MessageCircle className='h-5 w-5' />
             Contact & Support
-          </h3>
+          </CardTitle>
           <p className='text-body-small text-muted-foreground mt-1'>
             Get help from our support team when you need it
           </p>
-        </div>
-        <div className='p-6 pt-0'>
+        </CardHeader>
+        <CardContent className='pt-0'>
           <div className='bg-muted/30 p-6 rounded-lg text-center'>
             <MessageCircle className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
             <p className='text-muted-foreground'>Support contact information and ticketing system will be available here</p>
@@ -315,12 +320,12 @@ export function HelpSupport() {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Help Tips */}
-      <div className='card bg-blue-50'>
-        <div className='p-4'>
+      <Card className='bg-blue-50'>
+        <CardContent className='p-4'>
           <h4 className='font-semibold text-blue-800 mb-2'>Quick Tips</h4>
           <div className='text-body-small text-blue-700 space-y-1'>
             <p>• Use Ctrl+K (Cmd+K) to open the command palette from anywhere in the system</p>
@@ -328,8 +333,8 @@ export function HelpSupport() {
             <p>• Most forms support Enter key for quick submission and Tab for field navigation</p>
             <p>• Use the search function above to quickly find specific help topics</p>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

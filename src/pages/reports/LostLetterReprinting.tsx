@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Search, FileText, Printer, Eye } from 'lucide-react';
+import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { PageHeader } from '@/components/layout/PageHeader';
 
 interface CustomerDetails {
   name: string;
@@ -100,45 +103,38 @@ export function LostLetterReprinting() {
   return (
     <div className='space-y-6'>
       {/* Page Header */}
-      <div className='flex justify-between items-start'>
-        <div>
-          <h1 className='text-h1 font-bold text-foreground mb-2'>
-            Lost Letter Reprinting
-          </h1>
-          <p className='text-muted-foreground'>
-            Reprint lost letters and receipts for existing transactions with receipt verification
-          </p>
-        </div>
-        <div className='text-right'>
-          <div className='text-body-small text-muted-foreground'>Function</div>
-          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-05</div>
-        </div>
-      </div>
+      <PageHeader 
+        title="Lost Letter Reprinting"
+        description="Reprint lost letters and receipts for existing transactions with receipt verification"
+      />
 
       {/* Receipt Lookup Section */}
-      <div className='card'>
-        <div className='card-header'>
-          <h3 className='card-title flex items-center gap-2'>
+      <Card>
+        <CardHeader>
+          <CardTitle className='flex items-center gap-2'>
             <Search className='h-5 w-5' />
             Receipt Lookup
-          </h3>
+          </CardTitle>
           <p className='text-body-small text-muted-foreground mt-1'>
             Enter receipt details to locate the transaction for reprinting
           </p>
-        </div>
-        <div className='p-6 pt-0'>
+        </CardHeader>
+        <CardContent>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             <div className='form-group'>
               <label className='form-label required' htmlFor='receipt-number'>
                 Receipt Number
               </label>
-              <input
+              <Input
                 id='receipt-number'
                 className='input-field text-mono'
                 type='text'
                 placeholder='RCP20250714001'
                 value={receiptNumber}
-                onChange={(e) => setReceiptNumber(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                  const value = typeof e === 'string' ? e : e.target.value;
+                  setReceiptNumber(value);
+                }}
                 onKeyPress={handleReceiptKeyPress}
                 required
               />
@@ -148,12 +144,15 @@ export function LostLetterReprinting() {
               <label className='form-label' htmlFor='transaction-date'>
                 Transaction Date
               </label>
-              <input
+              <Input
                 id='transaction-date'
                 className='input-field'
                 type='date'
                 value={transactionDate}
-                onChange={(e) => setTransactionDate(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                  const value = typeof e === 'string' ? e : e.target.value;
+                  setTransactionDate(value);
+                }}
               />
               <div className='text-caption'>Optional filter for faster lookup</div>
             </div>
@@ -177,22 +176,22 @@ export function LostLetterReprinting() {
               )}
             </Button>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       {/* Lost Letter Details Display Section */}
       {isLookupPerformed && (
-        <div className='card'>
-          <div className='card-header'>
-            <h3 className='card-title flex items-center gap-2'>
+        <Card>
+          <CardHeader>
+            <CardTitle className='flex items-center gap-2'>
               <FileText className='h-5 w-5' />
               Lost Letter Details
-            </h3>
+            </CardTitle>
             <p className='text-body-small text-muted-foreground mt-1'>
               Transaction details for receipt: <span className='text-mono font-semibold'>{receiptNumber}</span>
             </p>
-          </div>
-          <div className='p-6 pt-0'>
+          </CardHeader>
+          <CardContent>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               {/* Customer Details */}
               <div>
@@ -259,23 +258,23 @@ export function LostLetterReprinting() {
                 Original transaction located successfully. You can now proceed with reprinting the letter.
               </p>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Reprint Actions Section */}
       {isLookupPerformed && (
-        <div className='card'>
-          <div className='card-header'>
-            <h3 className='card-title flex items-center gap-2'>
+        <Card>
+          <CardHeader>
+            <CardTitle className='flex items-center gap-2'>
               <Printer className='h-5 w-5' />
               Reprint Options
-            </h3>
+            </CardTitle>
             <p className='text-body-small text-muted-foreground mt-1'>
               Configure letter type, format, and number of copies for reprinting
             </p>
-          </div>
-          <div className='p-6 pt-0'>
+          </CardHeader>
+          <CardContent>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-6'>
               <div className='form-group'>
                 <label className='form-label required' htmlFor='letter-type'>
@@ -316,14 +315,17 @@ export function LostLetterReprinting() {
                 <label className='form-label required' htmlFor='copies'>
                   Copies
                 </label>
-                <input
+                <Input
                   id='copies'
                   className='input-field'
                   type='number'
                   min='1'
                   max='10'
                   value={copies}
-                  onChange={(e) => setCopies(parseInt(e.target.value) || 1)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                    const value = typeof e === 'string' ? e : e.target.value;
+                    setCopies(parseInt(value) || 1);
+                  }}
                   required
                 />
                 <div className='text-caption'>Maximum 10 copies allowed</div>
@@ -382,13 +384,13 @@ export function LostLetterReprinting() {
                 Generate & Print
               </Button>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Help Notice */}
-      <div className='card bg-blue-50'>
-        <div className='p-4'>
+      <Card className='bg-blue-50'>
+        <CardContent className='p-4'>
           <h4 className='font-semibold text-blue-800 mb-2'>Reprint Guidelines</h4>
           <div className='text-body-small text-blue-700 space-y-1'>
             <p>• Receipt number is required and must match the original transaction</p>
@@ -397,8 +399,8 @@ export function LostLetterReprinting() {
             <p>• Maximum of 10 copies can be printed per request</p>
             <p>• Reprint fees may apply according to current pricing schedule</p>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

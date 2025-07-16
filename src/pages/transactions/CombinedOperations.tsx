@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/Input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card-actual';
+import { PageHeader } from '@/components/layout/PageHeader';
 import { useTransactionStore } from '@/stores/transactionStore';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -289,7 +290,10 @@ export function CombinedOperations() {
                     type='text'
                     placeholder={operationType === 'renew' ? 'B/MMYY/XXXX' : 'S/MMYY/XXXX'}
                     value={ticketNumber}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTicketNumber(formatTicketNumber(e.target.value))}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement> | string) => {
+                      const value = typeof e === 'string' ? e : e.target.value;
+                      setTicketNumber(formatTicketNumber(value));
+                    }}
                     onKeyPress={handleTicketKeyPress}
                     disabled={isProcessing}
                     required
@@ -619,20 +623,10 @@ export function CombinedOperations() {
   return (
     <div className='space-y-6'>
       {/* Page Header */}
-      <div className='flex justify-between items-start'>
-        <div>
-          <h1 className='text-h1 font-bold text-foreground mb-2'>
-            Combined Operations
-          </h1>
-          <p className='text-muted-foreground'>
-            Process multiple renewals and redemptions simultaneously with net settlement
-          </p>
-        </div>
-        <div className='text-right'>
-          <div className='text-body-small text-muted-foreground'>Function</div>
-          <div className='text-h3 font-semibold text-foreground font-mono'>FUNC-06</div>
-        </div>
-      </div>
+      <PageHeader 
+        title="Combined Operations"
+        description="Process multiple renewals and redemptions simultaneously with net settlement"
+      />
 
       {/* Two-Column Grid Layout */}
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>

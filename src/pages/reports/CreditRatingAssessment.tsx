@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui';
 import { Input } from '@/components/ui/Input';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { PageHeader } from '@/components/layout/PageHeader';
 import {
   TrendingUp,
   Search,
@@ -258,20 +259,10 @@ export function CreditRatingAssessment() {
   return (
     <div className='space-y-6'>
       {/* Header */}
-      <div className='flex justify-between items-start'>
-        <div>
-          <h1 className='text-h1 font-bold text-text-primary mb-2'>
-            Credit Rating Assessment
-          </h1>
-          <p className='text-text-secondary'>
-            Comprehensive customer risk evaluation and credit analysis
-          </p>
-        </div>
-        <div className='text-right'>
-          <div className='text-body-small text-text-secondary'>Function</div>
-          <div className='text-h3 font-semibold text-text-primary'>FUNC-07</div>
-        </div>
-      </div>
+      <PageHeader 
+        title="Credit Rating Assessment"
+        description="Comprehensive customer risk evaluation and credit analysis"
+      />
 
       {/* Search Interface */}
       <Card>

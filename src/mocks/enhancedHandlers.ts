@@ -474,6 +474,77 @@ const mockDocuments = [
   },
 ];
 
+// Dynamic ticket generator for missing tickets
+const generateMockTicket = (ticketNo: string): TicketData | undefined => {
+  // Validate ticket number format: B/MMYY/XXXX
+  const ticketPattern = /^B\/(\d{4})\/(\d{4})$/;
+  const match = ticketNo.match(ticketPattern);
+  
+  if (!match || match.length < 3) return undefined;
+  
+  const sequence = match[2];
+  if (!sequence) return undefined;
+  const seqNum = parseInt(sequence, 10);
+  
+  // Use sequence number to determine customer and other details
+  const customerIndex = seqNum % mockCustomers.length;
+  const customer = mockCustomers[customerIndex];
+  
+  if (!customer) return undefined;
+  
+  // Generate consistent data based on sequence number
+  const baseAmount = 300 + (seqNum % 1000);
+  const monthsBack = Math.floor(seqNum % 12) + 1;
+  const pawnDate = new Date();
+  pawnDate.setMonth(pawnDate.getMonth() - monthsBack);
+  
+  const expiryDate = new Date(pawnDate);
+  expiryDate.setMonth(expiryDate.getMonth() + 3);
+  
+  const maturityDate = new Date(expiryDate);
+  maturityDate.setMonth(maturityDate.getMonth() + 3);
+  
+  const items = ['Gold chain', 'Gold ring', 'Gold bracelet', 'Gold earrings', 'Gold pendant'];
+  const item = items[seqNum % items.length] || 'Gold item';
+  
+  return {
+    ticketNo,
+    pledgeNo: `PL${sequence}`,
+    customerId: customer.id,
+    customer: {
+      id: customer.id,
+      nric: customer.nric,
+      name: customer.name,
+      contact: customer.contact,
+    },
+    pledge: {
+      pledgeNo: `PL${sequence}`,
+      weight: `${(5 + (seqNum % 20)).toFixed(1)}g`,
+      description: item,
+      scrambledNo: `SCR${sequence}`,
+      pledgeCode: `PC${sequence}`,
+      stCode: `ST${sequence}`,
+      pCode: `P${sequence}`,
+    },
+    financial: {
+      principal: baseAmount,
+      interest: Math.round(baseAmount * 0.03 * 3),
+      months: 3,
+      newAmount: baseAmount + Math.round(baseAmount * 0.03 * 3),
+      outstandings: 0,
+      interestRate: 3.0,
+    },
+    dates: {
+      pawnDate: pawnDate.toISOString().split('T')[0] || '2024-01-01',
+      expiryDate: expiryDate.toISOString().split('T')[0] || '2024-04-01',
+      maturityDate: maturityDate.toISOString().split('T')[0] || '2024-07-01',
+    },
+    status: seqNum % 4 === 0 ? TicketStatus.R : TicketStatus.U,
+    createdAt: pawnDate.toISOString(),
+    updatedAt: pawnDate.toISOString(),
+  };
+};
+
 // Find mock data helpers
 const findMockStaff = (code: string) =>
   mockStaffMembers.find(staff => staff.code === code);
@@ -628,19 +699,28 @@ export const enhancedHandlers = [
       await simulateNetworkDelay(300, 1200);
     }
 
-    const ticket = findMockTicket(ticketNo as string);
+    // First try to find ticket in static mock data
+    let ticket = findMockTicket(ticketNo as string);
+    
+    // If not found, try to generate a dynamic ticket
+    if (!ticket) {
+      ticket = generateMockTicket(ticketNo as string);
+    }
 
     if (ticket) {
+      console.log(`🎫 Mock: Found/Generated ticket ${ticketNo}`, ticket);
       return HttpResponse.json({
         success: true,
         data: ticket,
       });
     }
 
+    // Return 404 only for invalid ticket number formats
+    console.log(`🎫 Mock: Invalid ticket format ${ticketNo}`);
     return HttpResponse.json(
       {
         success: false,
-        error: 'Ticket not found',
+        error: 'Invalid ticket number format. Expected format: B/MMYY/XXXX',
       },
       { status: 404 }
     );
@@ -700,13 +780,19 @@ export const enhancedHandlers = [
     const calculationDate =
       url.searchParams.get('calculationDate') || new Date().toISOString();
 
-    const ticket = findMockTicket(ticketNo as string);
+    // First try to find ticket in static mock data
+    let ticket = findMockTicket(ticketNo as string);
+    
+    // If not found, try to generate a dynamic ticket
+    if (!ticket) {
+      ticket = generateMockTicket(ticketNo as string);
+    }
 
     if (!ticket) {
       return HttpResponse.json(
         {
           success: false,
-          error: 'Ticket not found',
+          error: 'Invalid ticket number format. Expected format: B/MMYY/XXXX',
         },
         { status: 404 }
       );

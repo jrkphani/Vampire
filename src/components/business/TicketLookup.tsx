@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/compat';
 import { Button } from '@/components/ui';
-import { Card } from '@/components/ui/Card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { validateTicketNumber } from '@/utils/validation';
 import { formatTicketNumber } from '@/utils/business-helpers';
 import type { TicketData, TicketLookupResponse } from '@/types/business';
@@ -240,15 +240,16 @@ export const TicketLookup = React.memo(function TicketLookup({
       {/* Ticket Information Display */}
       {state.showTicketInfo && state.foundTicket && (
         <Card className='animate-fade-in'>
-          <div className='card-header'>
-            <h3 className='card-title'>Ticket Information</h3>
+          <CardHeader>
+            <CardTitle>Ticket Information</CardTitle>
             <div className='mt-2 flex items-center gap-2'>
               <span className='text-body-small text-text-secondary'>Status:</span>
               <TicketStatusBadge status={state.foundTicket.status} />
             </div>
-          </div>
+          </CardHeader>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          <CardContent>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             {/* Customer Information */}
             <div>
               <h4 className='font-semibold text-text-primary mb-3'>Customer</h4>
@@ -353,6 +354,7 @@ export const TicketLookup = React.memo(function TicketLookup({
               </div>
             </div>
           </div>
+          </CardContent>
         </Card>
       )}
     </div>

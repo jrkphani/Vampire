@@ -113,14 +113,23 @@ function NavSection({ title, items, isCollapsed }: { title: string, items: typeo
                     !isCollapsed ? 'justify-between' : 'justify-center px-2'
                   )}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-grow min-w-0">
                     <item.icon className='h-5 w-5 flex-shrink-0' />
                     {!isCollapsed && (
-                      <span className='text-body-small font-medium whitespace-nowrap'>{item.title}</span>
+                      <Tooltip delayDuration={0}>
+                        <TooltipTrigger asChild>
+                          <span className='text-body-small font-medium whitespace-nowrap overflow-hidden text-ellipsis'>
+                            {item.title}
+                          </span>
+                        </TooltipTrigger>
+                        <TooltipContent side='right' className='bg-primary text-primary-foreground'>
+                          <p>{item.title}</p>
+                        </TooltipContent>
+                      </Tooltip>
                     )}
                   </div>
                   {!isCollapsed && item.shortcut && (
-                    <span className="nav-shortcut">{item.shortcut}</span>
+                    <span className="nav-shortcut flex-shrink-0">{item.shortcut}</span>
                   )}
                 </div>
               </TooltipTrigger>
@@ -225,13 +234,17 @@ export function Sidebar() {
                 )}
                 onClick={toggleSidebar}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-grow min-w-0">
                   {sidebarOpen ? (
                     <PanelLeftClose className='h-5 w-5 flex-shrink-0' />
                   ) : (
                     <PanelLeftOpen className='h-5 w-5 flex-shrink-0' />
                   )}
-                  {sidebarOpen && <span className='text-body-small font-medium whitespace-nowrap'>Collapse</span>}
+                  {sidebarOpen && (
+                    <span className='text-body-small font-medium whitespace-nowrap overflow-hidden text-ellipsis'>
+                      Collapse
+                    </span>
+                  )}
                 </div>
               </div>
             </TooltipTrigger>

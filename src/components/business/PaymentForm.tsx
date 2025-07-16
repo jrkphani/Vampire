@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/compat';
 import { Button } from '@/components/ui';
-import { Card } from '@/components/ui/Card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { validatePayment } from '@/utils/validation';
 import {
   formatCurrency,
@@ -214,18 +214,19 @@ export function PaymentForm({
   };
 
   return (
-    <Card className={`space-y-6 ${className}`}>
-      <div className='card-header'>
-        <h3 className='card-title'>Payment Information</h3>
+    <Card className={className}>
+      <CardHeader>
+        <CardTitle>Payment Information</CardTitle>
         <div className='mt-2 text-body-small text-text-secondary'>
           Total Due:{' '}
           <span className='font-semibold text-brand-red'>
             {formatCurrency(totalDue)}
           </span>
         </div>
-      </div>
+      </CardHeader>
 
-      <form onSubmit={handleSubmit} className='space-y-6'>
+      <CardContent>
+        <form onSubmit={handleSubmit} className='space-y-6'>
         {/* Cash Payment */}
         <div className='space-y-4'>
           <div className='flex items-center justify-between'>
@@ -416,7 +417,8 @@ export function PaymentForm({
             </Button>
           </div>
         )}
-      </form>
+        </form>
+      </CardContent>
     </Card>
   );
 }

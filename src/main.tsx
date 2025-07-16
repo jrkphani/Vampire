@@ -13,11 +13,18 @@ console.log('🔍 Environment check:', {
 
 if (import.meta.env.DEV && import.meta.env.VITE_ENABLE_MOCK_DATA === 'true') {
   console.log('🔧 Starting Mock Service Worker...');
-  const { worker } = await import('./mocks/browser');
-  await worker.start({
-    onUnhandledRequest: 'bypass',
-  });
-  console.log('✅ Mock Service Worker started successfully');
+  import('./mocks/browser')
+    .then(({ worker }) => {
+      return worker.start({
+        onUnhandledRequest: 'bypass',
+      });
+    })
+    .then(() => {
+      console.log('✅ Mock Service Worker started successfully');
+    })
+    .catch(error => {
+      console.error('❌ Failed to start Mock Service Worker:', error);
+    });
 } else if (import.meta.env.DEV) {
   console.log('📡 MSW disabled - connecting to real API');
 } else {

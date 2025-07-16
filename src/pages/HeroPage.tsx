@@ -41,15 +41,13 @@ export function HeroPage() {
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100">
       {/* Header Bar */}
       <header className="relative z-10 flex items-center justify-between px-6 py-4 bg-surface/80 backdrop-blur-sm border-b border-border">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-brand-red rounded-lg flex items-center justify-center">
-            <Shield className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-h2 text-primary-main font-bold">ValueMax</h1>
-            <p className="text-body-small text-text-secondary">Vampire System</p>
-          </div>
-        </div>
+        <Link to="/" className="flex items-center h-full py-2">
+          <img
+            src="/assets/images/valuemax-logo.png"
+            alt="ValueMax Logo"
+            className="h-full max-h-[70px] w-auto object-contain"
+          />
+        </Link>
         <Button asChild>
           <Link to="/login">
             Staff Login

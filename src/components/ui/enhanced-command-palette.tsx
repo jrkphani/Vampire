@@ -122,7 +122,7 @@ const CommandResultItem: React.FC<{
       onSelect={onSelect}
       className='flex items-center gap-3 px-3 py-2'
     >
-      <Icon className='h-4 w-4 shrink-0 text-info' />
+      <Icon className='h-4 w-4 shrink-0 text-primary' />
       <div className='flex-1 min-w-0'>
         <div className='flex items-center gap-2'>
           <span className='font-medium truncate'>{result.title}</span>
@@ -156,7 +156,7 @@ const CustomerResultItem: React.FC<{
       onSelect={onSelect}
       className='flex items-center gap-3 px-3 py-2'
     >
-      <User className='h-4 w-4 shrink-0 text-success' />
+      <User className='h-4 w-4 shrink-0 text-primary' />
       <div className='flex-1 min-w-0'>
         <div className='flex items-center gap-2'>
           <span className='font-medium truncate'>{customer.name}</span>
@@ -200,9 +200,9 @@ const TicketResultItem: React.FC<{
   const expiryStatus = getExpiryStatus(ticket.dates.expiryDate);
 
   const statusColors = {
-    active: 'text-success',
-    expiring: 'text-warning',
-    expired: 'text-error',
+    active: 'text-primary',
+    expiring: 'text-destructive',
+    expired: 'text-destructive',
   };
 
   return (
@@ -272,7 +272,7 @@ const TransactionResultItem: React.FC<{
       onSelect={onSelect}
       className='flex items-center gap-3 px-3 py-2'
     >
-      <CreditCard className='h-4 w-4 shrink-0 text-accent' />
+      <CreditCard className='h-4 w-4 shrink-0 text-primary' />
       <div className='flex-1 min-w-0'>
         <div className='flex items-center gap-2'>
           <span className='font-medium truncate'>

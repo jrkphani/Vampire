@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/compat';
 import { Button } from '@/components/ui';
-import { Card } from '@/components/ui/Card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { validateStaffAuth } from '@/utils/validation';
 import { validateStaffPin, maskSensitiveInfo } from '@/utils/business-helpers';
 import type { StaffAuthentication, StaffInfo } from '@/types/business';
@@ -203,9 +203,9 @@ export function StaffAuthentication({
     state.staffCode.length >= 3 && validateStaffPin(state.pin);
 
   return (
-    <Card className={`space-y-6 ${className}`}>
-      <div className='card-header'>
-        <h3 className='card-title'>{title}</h3>
+    <Card className={className}>
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
         {description && (
           <p className='text-body-small text-text-secondary mt-1'>{description}</p>
         )}
@@ -219,7 +219,9 @@ export function StaffAuthentication({
             </p>
           </div>
         )}
-      </div>
+      </CardHeader>
+
+      <CardContent className='space-y-6'>
 
       {!state.isAuthenticated ? (
         <form onSubmit={handleSubmit} className='space-y-4'>

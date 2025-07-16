@@ -8,7 +8,7 @@
     /* shadcn/ui Theme Configuration - ValueMax Brand */
 
     /* Primary Color: ValueMax Brand Red */
-    --primary: 0 0% 9%; /* #8B1538 - Brand Red */
+    --primary: 338 76% 32%; /* #8B1538 - Brand Red */
     --primary-foreground: 0 0% 98%; /* White text on red */
 
     /* Secondary Color: Professional Slate */
@@ -81,8 +81,8 @@
 
   .dark {
     /* Primary Color: Adjusted for dark mode */
-    --primary: 0 0% 98%; /* Lighter red for dark backgrounds */
-    --primary-foreground: 0 0% 9%;
+    --primary: 338 76% 32%; /* Same brand red for dark mode */
+    --primary-foreground: 0 0% 98%; /* White text on red */
 
     /* Background Colors for Dark Mode */
     --background: 0 0% 3.9%; /* #0F172A - Dark slate */
@@ -358,14 +358,11 @@ button {
     /* Removed overflow: hidden to prevent clipping */
   }
 
-  /* Target the inner content div for proper flex behavior */
+  /* Ensure the inner div containing icon and title can grow and shrink */
   .nav-item > div:first-child {
     flex-grow: 1;
     flex-shrink: 1;
-    min-width: 0; /* Essential for flex items with text-overflow */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    min-width: 0; /* Crucial for flex items with text-overflow */
   }
 
   .nav-item:hover {

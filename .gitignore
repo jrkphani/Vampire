@@ -40,7 +40,7 @@ dist
 
 # Gatsby files
 .cache/
-public
+# public (Note: Commented out for Vite projects - public/ assets needed for deployment)
 
 # Vuepress build output
 .vuepress/dist
